@@ -1,1204 +1,2156 @@
 C:\Users\Administrator\PycharmProjects\pythonProject6\venv\Scripts\python.exe C:\Users\Administrator\PycharmProjects\pythonProject6\main.py 
-<!--
-   Extensible HTML version 1.0 Transitional DTD
-
-   This is the same as HTML 4 Transitional except for
-   changes due to the differences between XML and SGML.
-
-   Namespace = http://www.w3.org/1999/xhtml
-
-   For further information, see: http://www.w3.org/TR/xhtml1
-
-   Copyright (c) 1998-2002 W3C (MIT, INRIA, Keio),
-   All Rights Reserved. 
-
-   This DTD module is identified by the PUBLIC and SYSTEM identifiers:
-
-   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
-
-   $Revision: 1.1 $
-   $Date: 2018/03/20 03:13:13 $
-
--->
-
-<!--================ Character mnemonic entities =========================-->
-
-<!ENTITY % HTMLlat1 PUBLIC
-   "-//W3C//ENTITIES Latin 1 for XHTML//EN"
-   "xhtml-lat1.ent">
-%HTMLlat1;
-
-<!ENTITY % HTMLsymbol PUBLIC
-   "-//W3C//ENTITIES Symbols for XHTML//EN"
-   "xhtml-symbol.ent">
-%HTMLsymbol;
-
-<!ENTITY % HTMLspecial PUBLIC
-   "-//W3C//ENTITIES Special for XHTML//EN"
-   "xhtml-special.ent">
-%HTMLspecial;
-
-<!--================== Imported Names ====================================-->
-
-<!ENTITY % ContentType "CDATA">
-    <!-- media type, as per [RFC2045] -->
-
-<!ENTITY % ContentTypes "CDATA">
-    <!-- comma-separated list of media types, as per [RFC2045] -->
-
-<!ENTITY % Charset "CDATA">
-    <!-- a character encoding, as per [RFC2045] -->
-
-<!ENTITY % Charsets "CDATA">
-    <!-- a space separated list of character encodings, as per [RFC2045] -->
-
-<!ENTITY % LanguageCode "NMTOKEN">
-    <!-- a language code, as per [RFC3066] -->
-
-<!ENTITY % Character "CDATA">
-    <!-- a single character, as per section 2.2 of [XML] -->
-
-<!ENTITY % Number "CDATA">
-    <!-- one or more digits -->
-
-<!ENTITY % LinkTypes "CDATA">
-    <!-- space-separated list of link types -->
-
-<!ENTITY % MediaDesc "CDATA">
-    <!-- single or comma-separated list of media descriptors -->
-
-<!ENTITY % URI "CDATA">
-    <!-- a Uniform Resource Identifier, see [RFC2396] -->
-
-<!ENTITY % UriList "CDATA">
-    <!-- a space separated list of Uniform Resource Identifiers -->
-
-<!ENTITY % Datetime "CDATA">
-    <!-- date and time information. ISO date format -->
-
-<!ENTITY % Script "CDATA">
-    <!-- script expression -->
-
-<!ENTITY % StyleSheet "CDATA">
-    <!-- style sheet data -->
-
-<!ENTITY % Text "CDATA">
-    <!-- used for titles etc. -->
-
-<!ENTITY % FrameTarget "NMTOKEN">
-    <!-- render in this frame -->
-
-<!ENTITY % Length "CDATA">
-    <!-- nn for pixels or nn% for percentage length -->
-
-<!ENTITY % MultiLength "CDATA">
-    <!-- pixel, percentage, or relative -->
-
-<!ENTITY % Pixels "CDATA">
-    <!-- integer representing length in pixels -->
-
-<!-- these are used for image maps -->
-
-<!ENTITY % Shape "(rect|circle|poly|default)">
-
-<!ENTITY % Coords "CDATA">
-    <!-- comma separated list of lengths -->
-
-<!-- used for object, applet, img, input and iframe -->
-<!ENTITY % ImgAlign "(top|middle|bottom|left|right)">
-
-<!-- a color using sRGB: #RRGGBB as Hex values -->
-<!ENTITY % Color "CDATA">
-
-<!-- There are also 16 widely known color names with their sRGB values:
-
-    Black  = #000000    Green  = #008000
-    Silver = #C0C0C0    Lime   = #00FF00
-    Gray   = #808080    Olive  = #808000
-    White  = #FFFFFF    Yellow = #FFFF00
-    Maroon = #800000    Navy   = #000080
-    Red    = #FF0000    Blue   = #0000FF
-    Purple = #800080    Teal   = #008080
-    Fuchsia= #FF00FF    Aqua   = #00FFFF
--->
-
-<!--=================== Generic Attributes ===============================-->
-
-<!-- core attributes common to most elements
-  id       document-wide unique id
-  class    space separated list of classes
-  style    associated style info
-  title    advisory title/amplification
--->
-<!ENTITY % coreattrs
- "id          ID             #IMPLIED
-  class       CDATA          #IMPLIED
-  style       %StyleSheet;   #IMPLIED
-  title       %Text;         #IMPLIED"
-  >
-
-<!-- internationalization attributes
-  lang        language code (backwards compatible)
-  xml:lang    language code (as per XML 1.0 spec)
-  dir         direction for weak/neutral text
--->
-<!ENTITY % i18n
- "lang        %LanguageCode; #IMPLIED
-  xml:lang    %LanguageCode; #IMPLIED
-  dir         (ltr|rtl)      #IMPLIED"
-  >
-
-<!-- attributes for common UI events
-  onclick     a pointer button was clicked
-  ondblclick  a pointer button was double clicked
-  onmousedown a pointer button was pressed down
-  onmouseup   a pointer button was released
-  onmousemove a pointer was moved onto the element
-  onmouseout  a pointer was moved away from the element
-  onkeypress  a key was pressed and released
-  onkeydown   a key was pressed down
-  onkeyup     a key was released
--->
-<!ENTITY % events
- "onclick     %Script;       #IMPLIED
-  ondblclick  %Script;       #IMPLIED
-  onmousedown %Script;       #IMPLIED
-  onmouseup   %Script;       #IMPLIED
-  onmouseover %Script;       #IMPLIED
-  onmousemove %Script;       #IMPLIED
-  onmouseout  %Script;       #IMPLIED
-  onkeypress  %Script;       #IMPLIED
-  onkeydown   %Script;       #IMPLIED
-  onkeyup     %Script;       #IMPLIED"
-  >
-
-<!-- attributes for elements that can get the focus
-  accesskey   accessibility key character
-  tabindex    position in tabbing order
-  onfocus     the element got the focus
-  onblur      the element lost the focus
--->
-<!ENTITY % focus
- "accesskey   %Character;    #IMPLIED
-  tabindex    %Number;       #IMPLIED
-  onfocus     %Script;       #IMPLIED
-  onblur      %Script;       #IMPLIED"
-  >
-
-<!ENTITY % attrs "%coreattrs; %i18n; %events;">
-
-<!-- text alignment for p, div, h1-h6. The default is
-     align="left" for ltr headings, "right" for rtl -->
-
-<!ENTITY % TextAlign "align (left|center|right|justify) #IMPLIED">
-
-<!--=================== Text Elements ====================================-->
-
-<!ENTITY % special.extra
-   "object | applet | img | map | iframe">
-	
-<!ENTITY % special.basic
-	"br | span | bdo">
-
-<!ENTITY % special
-   "%special.basic; | %special.extra;">
-
-<!ENTITY % fontstyle.extra "big | small | font | basefont">
-
-<!ENTITY % fontstyle.basic "tt | i | b | u
-                      | s | strike ">
-
-<!ENTITY % fontstyle "%fontstyle.basic; | %fontstyle.extra;">
-
-<!ENTITY % phrase.extra "sub | sup">
-<!ENTITY % phrase.basic "em | strong | dfn | code | q |
-                   samp | kbd | var | cite | abbr | acronym">
-
-<!ENTITY % phrase "%phrase.basic; | %phrase.extra;">
-
-<!ENTITY % inline.forms "input | select | textarea | label | button">
-
-<!-- these can occur at block or inline level -->
-<!ENTITY % misc.inline "ins | del | script">
-
-<!-- these can only occur at block level -->
-<!ENTITY % misc "noscript | %misc.inline;">
-
-<!ENTITY % inline "a | %special; | %fontstyle; | %phrase; | %inline.forms;">
-
-<!-- %Inline; covers inline or "text-level" elements -->
-<!ENTITY % Inline "(#PCDATA | %inline; | %misc.inline;)*">
-
-<!--================== Block level elements ==============================-->
-
-<!ENTITY % heading "h1|h2|h3|h4|h5|h6">
-<!ENTITY % lists "ul | ol | dl | menu | dir">
-<!ENTITY % blocktext "pre | hr | blockquote | address | center | noframes">
-
-<!ENTITY % block
-    "p | %heading; | div | %lists; | %blocktext; | isindex |fieldset | table">
-
-<!-- %Flow; mixes block and inline and is used for list items etc. -->
-<!ENTITY % Flow "(#PCDATA | %block; | form | %inline; | %misc;)*">
-
-<!--================== Content models for exclusions =====================-->
-
-<!-- a elements use %Inline; excluding a -->
-
-<!ENTITY % a.content
-   "(#PCDATA | %special; | %fontstyle; | %phrase; | %inline.forms; | %misc.inline;)*">
-
-<!-- pre uses %Inline excluding img, object, applet, big, small,
-     font, or basefont -->
-
-<!ENTITY % pre.content
-   "(#PCDATA | a | %special.basic; | %fontstyle.basic; | %phrase.basic; |
-	   %inline.forms; | %misc.inline;)*">
-
-<!-- form uses %Flow; excluding form -->
-
-<!ENTITY % form.content "(#PCDATA | %block; | %inline; | %misc;)*">
-
-<!-- button uses %Flow; but excludes a, form, form controls, iframe -->
-
-<!ENTITY % button.content
-   "(#PCDATA | p | %heading; | div | %lists; | %blocktext; |
-      table | br | span | bdo | object | applet | img | map |
-      %fontstyle; | %phrase; | %misc;)*">
-
-<!--================ Document Structure ==================================-->
-
-<!-- the namespace URI designates the document profile -->
-
-<!ELEMENT html (head, body)>
-<!ATTLIST html
-  %i18n;
-  id          ID             #IMPLIED
-  xmlns       %URI;          #FIXED 'http://www.w3.org/1999/xhtml'
-  >
-
-<!--================ Document Head =======================================-->
-
-<!ENTITY % head.misc "(script|style|meta|link|object|isindex)*">
-
-<!-- content model is %head.misc; combined with a single
-     title and an optional base element in any order -->
-
-<!ELEMENT head (%head.misc;,
-     ((title, %head.misc;, (base, %head.misc;)?) |
-      (base, %head.misc;, (title, %head.misc;))))>
-
-<!ATTLIST head
-  %i18n;
-  id          ID             #IMPLIED
-  profile     %URI;          #IMPLIED
-  >
-
-<!-- The title element is not considered part of the flow of text.
-       It should be displayed, for example as the page header or
-       window title. Exactly one title is required per document.
-    -->
-<!ELEMENT title (#PCDATA)>
-<!ATTLIST title 
-  %i18n;
-  id          ID             #IMPLIED
-  >
-
-<!-- document base URI -->
-
-<!ELEMENT base EMPTY>
-<!ATTLIST base
-  id          ID             #IMPLIED
-  href        %URI;          #IMPLIED
-  target      %FrameTarget;  #IMPLIED
-  >
-
-<!-- generic metainformation -->
-<!ELEMENT meta EMPTY>
-<!ATTLIST meta
-  %i18n;
-  id          ID             #IMPLIED
-  http-equiv  CDATA          #IMPLIED
-  name        CDATA          #IMPLIED
-  content     CDATA          #REQUIRED
-  scheme      CDATA          #IMPLIED
-  >
-
-<!--
-  Relationship values can be used in principle:
-
-   a) for document specific toolbars/menus when used
-      with the link element in document head e.g.
-        start, contents, previous, next, index, end, help
-   b) to link to a separate style sheet (rel="stylesheet")
-   c) to make a link to a script (rel="script")
-   d) by stylesheets to control how collections of
-      html nodes are rendered into printed documents
-   e) to make a link to a printable version of this document
-      e.g. a PostScript or PDF version (rel="alternate" media="print")
--->
-
-<!ELEMENT link EMPTY>
-<!ATTLIST link
-  %attrs;
-  charset     %Charset;      #IMPLIED
-  href        %URI;          #IMPLIED
-  hreflang    %LanguageCode; #IMPLIED
-  type        %ContentType;  #IMPLIED
-  rel         %LinkTypes;    #IMPLIED
-  rev         %LinkTypes;    #IMPLIED
-  media       %MediaDesc;    #IMPLIED
-  target      %FrameTarget;  #IMPLIED
-  >
-
-<!-- style info, which may include CDATA sections -->
-<!ELEMENT style (#PCDATA)>
-<!ATTLIST style
-  %i18n;
-  id          ID             #IMPLIED
-  type        %ContentType;  #REQUIRED
-  media       %MediaDesc;    #IMPLIED
-  title       %Text;         #IMPLIED
-  xml:space   (preserve)     #FIXED 'preserve'
-  >
-
-<!-- script statements, which may include CDATA sections -->
-<!ELEMENT script (#PCDATA)>
-<!ATTLIST script
-  id          ID             #IMPLIED
-  charset     %Charset;      #IMPLIED
-  type        %ContentType;  #REQUIRED
-  language    CDATA          #IMPLIED
-  src         %URI;          #IMPLIED
-  defer       (defer)        #IMPLIED
-  xml:space   (preserve)     #FIXED 'preserve'
-  >
-
-<!-- alternate content container for non script-based rendering -->
-
-<!ELEMENT noscript %Flow;>
-<!ATTLIST noscript
-  %attrs;
-  >
-
-<!--======================= Frames =======================================-->
-
-<!-- inline subwindow -->
-
-<!ELEMENT iframe %Flow;>
-<!ATTLIST iframe
-  %coreattrs;
-  longdesc    %URI;          #IMPLIED
-  name        NMTOKEN        #IMPLIED
-  src         %URI;          #IMPLIED
-  frameborder (1|0)          "1"
-  marginwidth %Pixels;       #IMPLIED
-  marginheight %Pixels;      #IMPLIED
-  scrolling   (yes|no|auto)  "auto"
-  align       %ImgAlign;     #IMPLIED
-  height      %Length;       #IMPLIED
-  width       %Length;       #IMPLIED
-  >
-
-<!-- alternate content container for non frame-based rendering -->
-
-<!ELEMENT noframes %Flow;>
-<!ATTLIST noframes
-  %attrs;
-  >
-
-<!--=================== Document Body ====================================-->
-
-<!ELEMENT body %Flow;>
-<!ATTLIST body
-  %attrs;
-  onload      %Script;       #IMPLIED
-  onunload    %Script;       #IMPLIED
-  background  %URI;          #IMPLIED
-  bgcolor     %Color;        #IMPLIED
-  text        %Color;        #IMPLIED
-  link        %Color;        #IMPLIED
-  vlink       %Color;        #IMPLIED
-  alink       %Color;        #IMPLIED
-  >
-
-<!ELEMENT div %Flow;>  <!-- generic language/style container -->
-<!ATTLIST div
-  %attrs;
-  %TextAlign;
-  >
-
-<!--=================== Paragraphs =======================================-->
-
-<!ELEMENT p %Inline;>
-<!ATTLIST p
-  %attrs;
-  %TextAlign;
-  >
-
-<!--=================== Headings =========================================-->
-
-<!--
-  There are six levels of headings from h1 (the most important)
-  to h6 (the least important).
--->
-
-<!ELEMENT h1  %Inline;>
-<!ATTLIST h1
-  %attrs;
-  %TextAlign;
-  >
-
-<!ELEMENT h2 %Inline;>
-<!ATTLIST h2
-  %attrs;
-  %TextAlign;
-  >
-
-<!ELEMENT h3 %Inline;>
-<!ATTLIST h3
-  %attrs;
-  %TextAlign;
-  >
-
-<!ELEMENT h4 %Inline;>
-<!ATTLIST h4
-  %attrs;
-  %TextAlign;
-  >
-
-<!ELEMENT h5 %Inline;>
-<!ATTLIST h5
-  %attrs;
-  %TextAlign;
-  >
-
-<!ELEMENT h6 %Inline;>
-<!ATTLIST h6
-  %attrs;
-  %TextAlign;
-  >
-
-<!--=================== Lists ============================================-->
-
-<!-- Unordered list bullet styles -->
-
-<!ENTITY % ULStyle "(disc|square|circle)">
-
-<!-- Unordered list -->
-
-<!ELEMENT ul (li)+>
-<!ATTLIST ul
-  %attrs;
-  type        %ULStyle;     #IMPLIED
-  compact     (compact)     #IMPLIED
-  >
-
-<!-- Ordered list numbering style
-
-    1   arabic numbers      1, 2, 3, ...
-    a   lower alpha         a, b, c, ...
-    A   upper alpha         A, B, C, ...
-    i   lower roman         i, ii, iii, ...
-    I   upper roman         I, II, III, ...
-
-    The style is applied to the sequence number which by default
-    is reset to 1 for the first list item in an ordered list.
--->
-<!ENTITY % OLStyle "CDATA">
-
-<!-- Ordered (numbered) list -->
-
-<!ELEMENT ol (li)+>
-<!ATTLIST ol
-  %attrs;
-  type        %OLStyle;      #IMPLIED
-  compact     (compact)      #IMPLIED
-  start       %Number;       #IMPLIED
-  >
-
-<!-- single column list (DEPRECATED) --> 
-<!ELEMENT menu (li)+>
-<!ATTLIST menu
-  %attrs;
-  compact     (compact)     #IMPLIED
-  >
-
-<!-- multiple column list (DEPRECATED) --> 
-<!ELEMENT dir (li)+>
-<!ATTLIST dir
-  %attrs;
-  compact     (compact)     #IMPLIED
-  >
-
-<!-- LIStyle is constrained to: "(%ULStyle;|%OLStyle;)" -->
-<!ENTITY % LIStyle "CDATA">
-
-<!-- list item -->
-
-<!ELEMENT li %Flow;>
-<!ATTLIST li
-  %attrs;
-  type        %LIStyle;      #IMPLIED
-  value       %Number;       #IMPLIED
-  >
-
-<!-- definition lists - dt for term, dd for its definition -->
-
-<!ELEMENT dl (dt|dd)+>
-<!ATTLIST dl
-  %attrs;
-  compact     (compact)      #IMPLIED
-  >
-
-<!ELEMENT dt %Inline;>
-<!ATTLIST dt
-  %attrs;
-  >
-
-<!ELEMENT dd %Flow;>
-<!ATTLIST dd
-  %attrs;
-  >
-
-<!--=================== Address ==========================================-->
-
-<!-- information on author -->
-
-<!ELEMENT address (#PCDATA | %inline; | %misc.inline; | p)*>
-<!ATTLIST address
-  %attrs;
-  >
-
-<!--=================== Horizontal Rule ==================================-->
-
-<!ELEMENT hr EMPTY>
-<!ATTLIST hr
-  %attrs;
-  align       (left|center|right) #IMPLIED
-  noshade     (noshade)      #IMPLIED
-  size        %Pixels;       #IMPLIED
-  width       %Length;       #IMPLIED
-  >
-
-<!--=================== Preformatted Text ================================-->
-
-<!-- content is %Inline; excluding 
-        "img|object|applet|big|small|sub|sup|font|basefont" -->
-
-<!ELEMENT pre %pre.content;>
-<!ATTLIST pre
-  %attrs;
-  width       %Number;      #IMPLIED
-  xml:space   (preserve)    #FIXED 'preserve'
-  >
-
-<!--=================== Block-like Quotes ================================-->
-
-<!ELEMENT blockquote %Flow;>
-<!ATTLIST blockquote
-  %attrs;
-  cite        %URI;          #IMPLIED
-  >
-
-<!--=================== Text alignment ===================================-->
-
-<!-- center content -->
-<!ELEMENT center %Flow;>
-<!ATTLIST center
-  %attrs;
-  >
-
-<!--=================== Inserted/Deleted Text ============================-->
-
-<!--
-  ins/del are allowed in block and inline content, but its
-  inappropriate to include block content within an ins element
-  occurring in inline content.
--->
-<!ELEMENT ins %Flow;>
-<!ATTLIST ins
-  %attrs;
-  cite        %URI;          #IMPLIED
-  datetime    %Datetime;     #IMPLIED
-  >
-
-<!ELEMENT del %Flow;>
-<!ATTLIST del
-  %attrs;
-  cite        %URI;          #IMPLIED
-  datetime    %Datetime;     #IMPLIED
-  >
-
-<!--================== The Anchor Element ================================-->
-
-<!-- content is %Inline; except that anchors shouldn't be nested -->
-
-<!ELEMENT a %a.content;>
-<!ATTLIST a
-  %attrs;
-  %focus;
-  charset     %Charset;      #IMPLIED
-  type        %ContentType;  #IMPLIED
-  name        NMTOKEN        #IMPLIED
-  href        %URI;          #IMPLIED
-  hreflang    %LanguageCode; #IMPLIED
-  rel         %LinkTypes;    #IMPLIED
-  rev         %LinkTypes;    #IMPLIED
-  shape       %Shape;        "rect"
-  coords      %Coords;       #IMPLIED
-  target      %FrameTarget;  #IMPLIED
-  >
-
-<!--===================== Inline Elements ================================-->
-
-<!ELEMENT span %Inline;> <!-- generic language/style container -->
-<!ATTLIST span
-  %attrs;
-  >
-
-<!ELEMENT bdo %Inline;>  <!-- I18N BiDi over-ride -->
-<!ATTLIST bdo
-  %coreattrs;
-  %events;
-  lang        %LanguageCode; #IMPLIED
-  xml:lang    %LanguageCode; #IMPLIED
-  dir         (ltr|rtl)      #REQUIRED
-  >
-
-<!ELEMENT br EMPTY>   <!-- forced line break -->
-<!ATTLIST br
-  %coreattrs;
-  clear       (left|all|right|none) "none"
-  >
-
-<!ELEMENT em %Inline;>   <!-- emphasis -->
-<!ATTLIST em %attrs;>
-
-<!ELEMENT strong %Inline;>   <!-- strong emphasis -->
-<!ATTLIST strong %attrs;>
-
-<!ELEMENT dfn %Inline;>   <!-- definitional -->
-<!ATTLIST dfn %attrs;>
-
-<!ELEMENT code %Inline;>   <!-- program code -->
-<!ATTLIST code %attrs;>
-
-<!ELEMENT samp %Inline;>   <!-- sample -->
-<!ATTLIST samp %attrs;>
-
-<!ELEMENT kbd %Inline;>  <!-- something user would type -->
-<!ATTLIST kbd %attrs;>
-
-<!ELEMENT var %Inline;>   <!-- variable -->
-<!ATTLIST var %attrs;>
-
-<!ELEMENT cite %Inline;>   <!-- citation -->
-<!ATTLIST cite %attrs;>
-
-<!ELEMENT abbr %Inline;>   <!-- abbreviation -->
-<!ATTLIST abbr %attrs;>
-
-<!ELEMENT acronym %Inline;>   <!-- acronym -->
-<!ATTLIST acronym %attrs;>
-
-<!ELEMENT q %Inline;>   <!-- inlined quote -->
-<!ATTLIST q
-  %attrs;
-  cite        %URI;          #IMPLIED
-  >
-
-<!ELEMENT sub %Inline;> <!-- subscript -->
-<!ATTLIST sub %attrs;>
-
-<!ELEMENT sup %Inline;> <!-- superscript -->
-<!ATTLIST sup %attrs;>
-
-<!ELEMENT tt %Inline;>   <!-- fixed pitch font -->
-<!ATTLIST tt %attrs;>
-
-<!ELEMENT i %Inline;>   <!-- italic font -->
-<!ATTLIST i %attrs;>
-
-<!ELEMENT b %Inline;>   <!-- bold font -->
-<!ATTLIST b %attrs;>
-
-<!ELEMENT big %Inline;>   <!-- bigger font -->
-<!ATTLIST big %attrs;>
-
-<!ELEMENT small %Inline;>   <!-- smaller font -->
-<!ATTLIST small %attrs;>
-
-<!ELEMENT u %Inline;>   <!-- underline -->
-<!ATTLIST u %attrs;>
-
-<!ELEMENT s %Inline;>   <!-- strike-through -->
-<!ATTLIST s %attrs;>
-
-<!ELEMENT strike %Inline;>   <!-- strike-through -->
-<!ATTLIST strike %attrs;>
-
-<!ELEMENT basefont EMPTY>  <!-- base font size -->
-<!ATTLIST basefont
-  id          ID             #IMPLIED
-  size        CDATA          #REQUIRED
-  color       %Color;        #IMPLIED
-  face        CDATA          #IMPLIED
-  >
-
-<!ELEMENT font %Inline;> <!-- local change to font -->
-<!ATTLIST font
-  %coreattrs;
-  %i18n;
-  size        CDATA          #IMPLIED
-  color       %Color;        #IMPLIED
-  face        CDATA          #IMPLIED
-  >
-
-<!--==================== Object ======================================-->
-<!--
-  object is used to embed objects as part of HTML pages.
-  param elements should precede other content. Parameters
-  can also be expressed as attribute/value pairs on the
-  object element itself when brevity is desired.
--->
-
-<!ELEMENT object (#PCDATA | param | %block; | form | %inline; | %misc;)*>
-<!ATTLIST object
-  %attrs;
-  declare     (declare)      #IMPLIED
-  classid     %URI;          #IMPLIED
-  codebase    %URI;          #IMPLIED
-  data        %URI;          #IMPLIED
-  type        %ContentType;  #IMPLIED
-  codetype    %ContentType;  #IMPLIED
-  archive     %UriList;      #IMPLIED
-  standby     %Text;         #IMPLIED
-  height      %Length;       #IMPLIED
-  width       %Length;       #IMPLIED
-  usemap      %URI;          #IMPLIED
-  name        NMTOKEN        #IMPLIED
-  tabindex    %Number;       #IMPLIED
-  align       %ImgAlign;     #IMPLIED
-  border      %Pixels;       #IMPLIED
-  hspace      %Pixels;       #IMPLIED
-  vspace      %Pixels;       #IMPLIED
-  >
-
-<!--
-  param is used to supply a named property value.
-  In XML it would seem natural to follow RDF and support an
-  abbreviated syntax where the param elements are replaced
-  by attribute value pairs on the object start tag.
--->
-<!ELEMENT param EMPTY>
-<!ATTLIST param
-  id          ID             #IMPLIED
-  name        CDATA          #REQUIRED
-  value       CDATA          #IMPLIED
-  valuetype   (data|ref|object) "data"
-  type        %ContentType;  #IMPLIED
-  >
-
-<!--=================== Java applet ==================================-->
-<!--
-  One of code or object attributes must be present.
-  Place param elements before other content.
--->
-<!ELEMENT applet (#PCDATA | param | %block; | form | %inline; | %misc;)*>
-<!ATTLIST applet
-  %coreattrs;
-  codebase    %URI;          #IMPLIED
-  archive     CDATA          #IMPLIED
-  code        CDATA          #IMPLIED
-  object      CDATA          #IMPLIED
-  alt         %Text;         #IMPLIED
-  name        NMTOKEN        #IMPLIED
-  width       %Length;       #REQUIRED
-  height      %Length;       #REQUIRED
-  align       %ImgAlign;     #IMPLIED
-  hspace      %Pixels;       #IMPLIED
-  vspace      %Pixels;       #IMPLIED
-  >
-
-<!--=================== Images ===========================================-->
-
-<!--
-   To avoid accessibility problems for people who aren't
-   able to see the image, you should provide a text
-   description using the alt and longdesc attributes.
-   In addition, avoid the use of server-side image maps.
--->
-
-<!ELEMENT img EMPTY>
-<!ATTLIST img
-  %attrs;
-  src         %URI;          #REQUIRED
-  alt         %Text;         #REQUIRED
-  name        NMTOKEN        #IMPLIED
-  longdesc    %URI;          #IMPLIED
-  height      %Length;       #IMPLIED
-  width       %Length;       #IMPLIED
-  usemap      %URI;          #IMPLIED
-  ismap       (ismap)        #IMPLIED
-  align       %ImgAlign;     #IMPLIED
-  border      %Length;       #IMPLIED
-  hspace      %Pixels;       #IMPLIED
-  vspace      %Pixels;       #IMPLIED
-  >
-
-<!-- usemap points to a map element which may be in this document
-  or an external document, although the latter is not widely supported -->
-
-<!--================== Client-side image maps ============================-->
-
-<!-- These can be placed in the same document or grouped in a
-     separate document although this isn't yet widely supported -->
-
-<!ELEMENT map ((%block; | form | %misc;)+ | area+)>
-<!ATTLIST map
-  %i18n;
-  %events;
-  id          ID             #REQUIRED
-  class       CDATA          #IMPLIED
-  style       %StyleSheet;   #IMPLIED
-  title       %Text;         #IMPLIED
-  name        CDATA          #IMPLIED
-  >
-
-<!ELEMENT area EMPTY>
-<!ATTLIST area
-  %attrs;
-  %focus;
-  shape       %Shape;        "rect"
-  coords      %Coords;       #IMPLIED
-  href        %URI;          #IMPLIED
-  nohref      (nohref)       #IMPLIED
-  alt         %Text;         #REQUIRED
-  target      %FrameTarget;  #IMPLIED
-  >
-
-<!--================ Forms ===============================================-->
-
-<!ELEMENT form %form.content;>   <!-- forms shouldn't be nested -->
-
-<!ATTLIST form
-  %attrs;
-  action      %URI;          #REQUIRED
-  method      (get|post)     "get"
-  name        NMTOKEN        #IMPLIED
-  enctype     %ContentType;  "application/x-www-form-urlencoded"
-  onsubmit    %Script;       #IMPLIED
-  onreset     %Script;       #IMPLIED
-  accept      %ContentTypes; #IMPLIED
-  accept-charset %Charsets;  #IMPLIED
-  target      %FrameTarget;  #IMPLIED
-  >
-
-<!--
-  Each label must not contain more than ONE field
-  Label elements shouldn't be nested.
--->
-<!ELEMENT label %Inline;>
-<!ATTLIST label
-  %attrs;
-  for         IDREF          #IMPLIED
-  accesskey   %Character;    #IMPLIED
-  onfocus     %Script;       #IMPLIED
-  onblur      %Script;       #IMPLIED
-  >
-
-<!ENTITY % InputType
-  "(text | password | checkbox |
-    radio | submit | reset |
-    file | hidden | image | button)"
-   >
-
-<!-- the name attribute is required for all but submit & reset -->
-
-<!ELEMENT input EMPTY>     <!-- form control -->
-<!ATTLIST input
-  %attrs;
-  %focus;
-  type        %InputType;    "text"
-  name        CDATA          #IMPLIED
-  value       CDATA          #IMPLIED
-  checked     (checked)      #IMPLIED
-  disabled    (disabled)     #IMPLIED
-  readonly    (readonly)     #IMPLIED
-  size        CDATA          #IMPLIED
-  maxlength   %Number;       #IMPLIED
-  src         %URI;          #IMPLIED
-  alt         CDATA          #IMPLIED
-  usemap      %URI;          #IMPLIED
-  onselect    %Script;       #IMPLIED
-  onchange    %Script;       #IMPLIED
-  accept      %ContentTypes; #IMPLIED
-  align       %ImgAlign;     #IMPLIED
-  >
-
-<!ELEMENT select (optgroup|option)+>  <!-- option selector -->
-<!ATTLIST select
-  %attrs;
-  name        CDATA          #IMPLIED
-  size        %Number;       #IMPLIED
-  multiple    (multiple)     #IMPLIED
-  disabled    (disabled)     #IMPLIED
-  tabindex    %Number;       #IMPLIED
-  onfocus     %Script;       #IMPLIED
-  onblur      %Script;       #IMPLIED
-  onchange    %Script;       #IMPLIED
-  >
-
-<!ELEMENT optgroup (option)+>   <!-- option group -->
-<!ATTLIST optgroup
-  %attrs;
-  disabled    (disabled)     #IMPLIED
-  label       %Text;         #REQUIRED
-  >
-
-<!ELEMENT option (#PCDATA)>     <!-- selectable choice -->
-<!ATTLIST option
-  %attrs;
-  selected    (selected)     #IMPLIED
-  disabled    (disabled)     #IMPLIED
-  label       %Text;         #IMPLIED
-  value       CDATA          #IMPLIED
-  >
-
-<!ELEMENT textarea (#PCDATA)>     <!-- multi-line text field -->
-<!ATTLIST textarea
-  %attrs;
-  %focus;
-  name        CDATA          #IMPLIED
-  rows        %Number;       #REQUIRED
-  cols        %Number;       #REQUIRED
-  disabled    (disabled)     #IMPLIED
-  readonly    (readonly)     #IMPLIED
-  onselect    %Script;       #IMPLIED
-  onchange    %Script;       #IMPLIED
-  >
-
-<!--
-  The fieldset element is used to group form fields.
-  Only one legend element should occur in the content
-  and if present should only be preceded by whitespace.
--->
-<!ELEMENT fieldset (#PCDATA | legend | %block; | form | %inline; | %misc;)*>
-<!ATTLIST fieldset
-  %attrs;
-  >
-
-<!ENTITY % LAlign "(top|bottom|left|right)">
-
-<!ELEMENT legend %Inline;>     <!-- fieldset label -->
-<!ATTLIST legend
-  %attrs;
-  accesskey   %Character;    #IMPLIED
-  align       %LAlign;       #IMPLIED
-  >
-
-<!--
- Content is %Flow; excluding a, form, form controls, iframe
---> 
-<!ELEMENT button %button.content;>  <!-- push button -->
-<!ATTLIST button
-  %attrs;
-  %focus;
-  name        CDATA          #IMPLIED
-  value       CDATA          #IMPLIED
-  type        (button|submit|reset) "submit"
-  disabled    (disabled)     #IMPLIED
-  >
-
-<!-- single-line text input control (DEPRECATED) -->
-<!ELEMENT isindex EMPTY>
-<!ATTLIST isindex
-  %coreattrs;
-  %i18n;
-  prompt      %Text;         #IMPLIED
-  >
-
-<!--======================= Tables =======================================-->
-
-<!-- Derived from IETF HTML table standard, see [RFC1942] -->
-
-<!--
- The border attribute sets the thickness of the frame around the
- table. The default units are screen pixels.
-
- The frame attribute specifies which parts of the frame around
- the table should be rendered. The values are not the same as
- CALS to avoid a name clash with the valign attribute.
--->
-<!ENTITY % TFrame "(void|above|below|hsides|lhs|rhs|vsides|box|border)">
-
-<!--
- The rules attribute defines which rules to draw between cells:
-
- If rules is absent then assume:
-     "none" if border is absent or border="0" otherwise "all"
--->
-
-<!ENTITY % TRules "(none | groups | rows | cols | all)">
-  
-<!-- horizontal placement of table relative to document -->
-<!ENTITY % TAlign "(left|center|right)">
-
-<!-- horizontal alignment attributes for cell contents
-
-  char        alignment char, e.g. char=':'
-  charoff     offset for alignment char
--->
-<!ENTITY % cellhalign
-  "align      (left|center|right|justify|char) #IMPLIED
-   char       %Character;    #IMPLIED
-   charoff    %Length;       #IMPLIED"
-  >
-
-<!-- vertical alignment attributes for cell contents -->
-<!ENTITY % cellvalign
-  "valign     (top|middle|bottom|baseline) #IMPLIED"
-  >
-
-<!ELEMENT table
-     (caption?, (col*|colgroup*), thead?, tfoot?, (tbody+|tr+))>
-<!ELEMENT caption  %Inline;>
-<!ELEMENT thead    (tr)+>
-<!ELEMENT tfoot    (tr)+>
-<!ELEMENT tbody    (tr)+>
-<!ELEMENT colgroup (col)*>
-<!ELEMENT col      EMPTY>
-<!ELEMENT tr       (th|td)+>
-<!ELEMENT th       %Flow;>
-<!ELEMENT td       %Flow;>
-
-<!ATTLIST table
-  %attrs;
-  summary     %Text;         #IMPLIED
-  width       %Length;       #IMPLIED
-  border      %Pixels;       #IMPLIED
-  frame       %TFrame;       #IMPLIED
-  rules       %TRules;       #IMPLIED
-  cellspacing %Length;       #IMPLIED
-  cellpadding %Length;       #IMPLIED
-  align       %TAlign;       #IMPLIED
-  bgcolor     %Color;        #IMPLIED
-  >
-
-<!ENTITY % CAlign "(top|bottom|left|right)">
-
-<!ATTLIST caption
-  %attrs;
-  align       %CAlign;       #IMPLIED
-  >
-
-<!--
-colgroup groups a set of col elements. It allows you to group
-several semantically related columns together.
--->
-<!ATTLIST colgroup
-  %attrs;
-  span        %Number;       "1"
-  width       %MultiLength;  #IMPLIED
-  %cellhalign;
-  %cellvalign;
-  >
-
-<!--
- col elements define the alignment properties for cells in
- one or more columns.
-
- The width attribute specifies the width of the columns, e.g.
-
-     width=64        width in screen pixels
-     width=0.5*      relative width of 0.5
-
- The span attribute causes the attributes of one
- col element to apply to more than one column.
--->
-<!ATTLIST col
-  %attrs;
-  span        %Number;       "1"
-  width       %MultiLength;  #IMPLIED
-  %cellhalign;
-  %cellvalign;
-  >
-
-<!--
-    Use thead to duplicate headers when breaking table
-    across page boundaries, or for static headers when
-    tbody sections are rendered in scrolling panel.
-
-    Use tfoot to duplicate footers when breaking table
-    across page boundaries, or for static footers when
-    tbody sections are rendered in scrolling panel.
-
-    Use multiple tbody sections when rules are needed
-    between groups of table rows.
--->
-<!ATTLIST thead
-  %attrs;
-  %cellhalign;
-  %cellvalign;
-  >
-
-<!ATTLIST tfoot
-  %attrs;
-  %cellhalign;
-  %cellvalign;
-  >
-
-<!ATTLIST tbody
-  %attrs;
-  %cellhalign;
-  %cellvalign;
-  >
-
-<!ATTLIST tr
-  %attrs;
-  %cellhalign;
-  %cellvalign;
-  bgcolor     %Color;        #IMPLIED
-  >
-
-<!-- Scope is simpler than headers attribute for common tables -->
-<!ENTITY % Scope "(row|col|rowgroup|colgroup)">
-
-<!-- th is for headers, td for data and for cells acting as both -->
-
-<!ATTLIST th
-  %attrs;
-  abbr        %Text;         #IMPLIED
-  axis        CDATA          #IMPLIED
-  headers     IDREFS         #IMPLIED
-  scope       %Scope;        #IMPLIED
-  rowspan     %Number;       "1"
-  colspan     %Number;       "1"
-  %cellhalign;
-  %cellvalign;
-  nowrap      (nowrap)       #IMPLIED
-  bgcolor     %Color;        #IMPLIED
-  width       %Length;       #IMPLIED
-  height      %Length;       #IMPLIED
-  >
-
-<!ATTLIST td
-  %attrs;
-  abbr        %Text;         #IMPLIED
-  axis        CDATA          #IMPLIED
-  headers     IDREFS         #IMPLIED
-  scope       %Scope;        #IMPLIED
-  rowspan     %Number;       "1"
-  colspan     %Number;       "1"
-  %cellhalign;
-  %cellvalign;
-  nowrap      (nowrap)       #IMPLIED
-  bgcolor     %Color;        #IMPLIED
-  width       %Length;       #IMPLIED
-  height      %Length;       #IMPLIED
-  >
+<html lang="en">&#13;
+<head>&#13;
+    <meta charset="UTF-8"/>&#13;
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>&#13;
+    <title>&#29992;&#25143;&#30331;&#24405;</title>&#13;
+    <link href="/css/fanya/common.css" rel="stylesheet"/>&#13;
+    <link href="/css/fanya/login.css" rel="stylesheet"/>&#13;
+    <link href="/css/fanya/twoFactorLoginPop.css" rel="stylesheet"/>&#13;
+    <script src="/js/jquery.min.js" type="text/javascript"/>&#13;
+    <script src="/js/common/jquery.base64.js" type="text/javascript"/>&#13;
+    <script src="/js/fanya/util.js" type="text/javascript"/>&#13;
+    <script src="/js/common/commonUtil.js?v=112" type="text/javascript"/>&#13;
+    <script src="/js/common/crypto-js.min.js" type="text/javascript"/>&#13;
+    <script>&#13;
+        $(function(){&#13;
+            if ($("#shownotice").val() == 1) {&#13;
+                showNotice($("#fid").val());&#13;
+            }&#13;
+            enterSubmit("loginBtn");&#13;
+&#13;
+            if(top != self){&#13;
+                $(".default-login").css("height","520px");&#13;
+                //$(".default-login").css("border-radius","0px");&#13;
+                //$(".default-login").css("box-shadow","");&#13;
+&#13;
+                $("body").css("background","none");&#13;
+                $(".lg-container").css("background","none");&#13;
+                $(".lg-container").css("border-top","none");&#13;
+&#13;
+&#13;
+            }&#13;
+&#13;
+            //&#21482;&#35201;&#37197;&#32622;&#20102;&#30331;&#24405;&#25552;&#31034;&#35821;&#65292;&#23601;&#37117;&#26174;&#31034;&#20986;&#26469;&#13;
+            let loginTip = "";&#13;
+            if (loginTip != "undefined" &amp;&amp; loginTip.trim() != "") {&#13;
+                $("#loginTip").show();&#13;
+            }&#13;
+&#13;
+            if ("https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("duxiu.com") != -1 || "https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("blyun.com") != -1 || "https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("zhizhen.com") != -1) {&#13;
+                $("#otherlogin").hide();&#13;
+                $("#showlogintext").html("&#36134;&#21495;&#30331;&#24405;");&#13;
+                $("#kf").hide();&#13;
+            }&#13;
+            if($("#showthird").val() == "1"){&#13;
+                $("#thirdLogin").show();&#13;
+            }&#13;
+&#13;
+            if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+                $("#leftdiv").hide();&#13;
+            }&#13;
+&#13;
+            if ("https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("dayi100.com") != -1) {&#13;
+                $("a[onclick='toRegister()']").hide();&#13;
+            }&#13;
+        });&#13;
+    </script>&#13;
+</head>&#13;
+<style type="text/css">&#13;
+    .Agreement{text-align:center;font-size: 12px;color: #A8A8B3;position:relative;left:0px;bottom:-70px;}&#13;
+    .Agreement a{display:inline-block;padding:0 5px;color:#3A8BFF}&#13;
+    .lg-title img{display:block;width:254px;height: 37px;margin:0 auto;}&#13;
+</style>&#13;
+<script>var _CP_ = '';</script>&#13;
+<body>&#13;
+<div class="lg-container">&#13;
+    <!--&#30331;&#24405; start -->&#13;
+    <div class="main default-login-main">&#13;
+        <!--&#40664;&#35748;&#30331;&#24405; start-->&#13;
+        <div class="default-login">&#13;
+            <div class="lg-top fs14">&#13;
+                <a href="/v5/toCustomer" target="_blank" class="service col-lightblue" id="kf">&#23458;&#26381;</a>&#13;
+            </div>&#13;
+            <div class="left" id="leftdiv">&#13;
+                                    <h3 class="lg-title" id="showlogintext">&#13;
+                                                    &#29992;&#25143;&#30331;&#24405;                                            </h3>&#13;
+                                <p id="loginTip" style="display:none;padding-bottom:10px;color:#A8A8B3;font-size:12px"/>&#13;
+                <form action="">&#13;
+                    <input type="hidden" id="needVcode" name="needVcode" value=""/>&#13;
+                    <input type="hidden" id="fid" name="fid" value="994"/>&#13;
+                    <input type="hidden" id="pid" name="pid" value="-1"/>&#13;
+                    <input type="hidden" id="refer" name="refer" value="https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b"/>&#13;
+                    <input type="hidden" id="forbidotherlogin" name="forbidotherlogin" value="0"/>&#13;
+                    <input type="hidden" id="t" name="t" value="true"/>&#13;
+                    <input type="hidden" id="_blank" value="0"/>&#13;
+                    <input type="hidden" id="regurl" value=""/>&#13;
+                    <input type="hidden" id="showthird" value="0"/>&#13;
+                    <input type="hidden" id="accounttip" value=""/>&#13;
+                    <input type="hidden" id="pwdtip" value=""/>&#13;
+                    <input type="hidden" id="quick" value="0"/>&#13;
+                    <input type="hidden" name="shownotice" id="shownotice" value="1"/>&#13;
+                    <input type="hidden" id="hidecompletephone" name="hidecompletephone" value="0"/>&#13;
+                    <input type="hidden" id="ebook" name="ebook" value="0"/>&#13;
+                    <input type="hidden" id="allowSkip" name="allowSkip" value="0"/>&#13;
+                    <input type="hidden" id="doubleFactorLogin" name="doubleFactorLogin" value="0"/>&#13;
+                    <input type="hidden" id="independentId" name="independentId" value="0"/>&#13;
+                    <!--&#30005;&#35805;&#21495;&#30721;-->&#13;
+                    <div class="lg-item icon-tel margin-btm24">&#13;
+                        <input type="text" class="ipt-tel" placeholder="&#25163;&#26426;&#21495;/&#36229;&#26143;&#21495;" id="phone" maxlength="50"/>&#13;
+                        <p class="err-txt" id="phoneMsg"/>&#13;
+                    </div>&#13;
+                    <!--&#23494;&#30721;-->&#13;
+                    <div class="lg-item item-pwd icon-pwd">&#13;
+                        <input type="password" class="ipt-pwd" placeholder="&#23398;&#20064;&#36890;&#23494;&#30721;" id="pwd" maxlength="20"/>&#13;
+                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        <a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        <p class="err-txt" id="pwdMsg"/>&#13;
+                    </div>&#13;
+                    <input type="hidden" name="validate" id="validate"/>&#13;
+                    <!--&#25353;&#38062;&#19981;&#21487;&#28857;&#20987; &#21152;&#19978;class&#65306;disable -->&#13;
+                    <div class="btns-box">&#13;
+                        <p class="err-tip" id="err-txt"/>&#13;
+                        <button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    </div>&#13;
+                </form>&#13;
+                <div class="clearaft fs14 pd-lr-24">&#13;
+                                            <a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">&#26032;&#29992;&#25143;&#27880;&#20876;</a>&#13;
+                                                    <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">&#25163;&#26426;&#39564;&#35777;&#30721;&#30331;&#24405;</a>&#13;
+                                            &#13;
+                </div>&#13;
+                <div class="line">&#13;
+                                            <a href="javaScript:otherLogin(3)" onclick="otherLogin(3)" id="otherlogin" class="col-lightblue fs14 icon-right">&#20854;&#23427;&#26041;&#24335;&#30331;&#24405;</a>&#13;
+                                    </div>&#13;
+                <p class="Agreement">&#30331;&#24405;&#21363;&#34920;&#31034;&#21516;&#24847;&#24179;&#21488;<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">&#12298;&#38544;&#31169;&#25919;&#31574;&#12299;</a>&#21644;<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">&#12298;&#29992;&#25143;&#21327;&#35758;&#12299;</a></p>&#13;
+            </div>&#13;
+            &#13;
+<style>&#13;
+&#13;
+    .social-login{color:#91A0B5;width:100%;position:absolute;left:0;bottom:30px;}&#13;
+    .social-login span{display:inline-block;margin:0 10px;}&#13;
+    .social-login span i{display:inline-block;width:20px;height:20px;margin-right:6px;}&#13;
+    .social-login span i img{width:100%;height:100%;vertical-align:middle;}&#13;
+    .social-login span.marLeft30{margin-left:30px;}&#13;
+&#13;
+</style>&#13;
+<div class="right" id="rightdiv">&#13;
+    <div id="step1">&#13;
+        <div class="ecode-box" style="position: relative;">&#13;
+&#13;
+&#13;
+            <style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            <div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            <input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            <input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            <img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            <span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        </div>&#13;
+        <p class="fs14 colorIn tip" id="quickCodeMsg">&#20351;&#29992;&#23398;&#20064;&#36890;APP&#25195;&#30721;&#30331;&#24405;</p>&#13;
+    </div>&#13;
+&#13;
+    <div class="social-login" style="display: none" id="thirdLogin">&#31038;&#20132;&#36134;&#21495;&#30331;&#24405;&#13;
+        <span onclick="to_third_login('weixin')" class="marLeft30" style=" cursor: pointer; "><i><img src="/images/common/weixin.png"/></i>&#24494;&#20449;</span>&#13;
+        <span onclick="to_third_login('qq')" style=" cursor: pointer; "><i><img src="/images/common/qq.png"/></i>QQ</span>&#13;
+    </div>&#13;
+&#13;
+    <div class="Rmain-cont" style="display:none" id="step2">&#13;
+        <div class="g_code_end">&#13;
+            <img src="" alt="" id="photo"/>&#13;
+        </div>&#13;
+        <p class="g_code_name mt30" id="shownickname"/>&#13;
+        <p class="g_code_over">&#35831;&#22312;&#23398;&#20064;&#36890;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;</p>&#13;
+        <p class="g_code_btn" onclick="changeUser();" style="cursor:pointer;color: #3A8BFF;">&#36820;&#22238;&#25195;&#30721;</p>&#13;
+    </div>&#13;
+&#13;
+&#13;
+&#13;
+</div>&#13;
+&#13;
+<script type="text/javascript">&#13;
+    /***/&#13;
+    function to_third_login(type,ref){&#13;
+        var fd=$("#fid").val();&#13;
+        if ("qq" == type) {&#13;
+            window.location.href="/oauth2/qq?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        } else if("weixin" == type){&#13;
+            window.location.href="/oauth2/weixin?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        }&#13;
+    }&#13;
+    function hideQRcode(){&#13;
+        $(".right").hide();&#13;
+        $(".default-login-main").attr("class","main default-login-min");&#13;
+    }&#13;
+&#13;
+&#13;
+    function changeUser(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    var qrInterValObj;&#13;
+    var enc = $("#enc").val();&#13;
+    var uuid = $("#uuid").val();&#13;
+    var ref = decodeURIComponent($("#refer").val());&#13;
+    var c =  0 ;&#13;
+&#13;
+    //&#36229;&#26143;&#38405;&#35835;&#22120; SSREADER/4.1.6.0001 &#20027;&#29256;&#26412;&#21495;&#22823;&#20110;&#31561;&#20110;4 &#38544;&#34255;&#25195;&#30721;&#30331;&#24405;&#13;
+    let userAgent = navigator.userAgent;&#13;
+    if (userAgent.indexOf("SSREADER/")&gt;-1){&#13;
+        let versionArr = userAgent.substr(0,10).split("/");&#13;
+        if (versionArr[1] &gt;= 4){&#13;
+            hideQRcode();&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#23450;&#21046;&#19981;&#26174;&#31034;&#20108;&#32500;&#30721;&#13;
+    if( 1 != 1 || 1 != 1){&#13;
+        hideQRcode();&#13;
+    }else if(994 == 34415){&#13;
+        $("#quickCode").attr("src","images/guide/34415ewm.png");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#19979;&#36733;&#31227;&#21160;&#23458;&#25143;&#31471;");&#13;
+    }else if(994 == 9566){&#13;
+        $("#quickCode").attr("src","images/guide/9566ewm.jpg");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#20851;&#27880;&#24494;&#20449;&#20844;&#20247;&#21495;");&#13;
+    }else{&#13;
+        qrInterValObj = window.setInterval(loopStatus, 3000); //&#21551;&#21160;&#35745;&#26102;&#22120;&#65292;1&#31186;&#25191;&#34892;&#19968;&#27425;&#13;
+        if(994 == 35014){&#13;
+            $("#quickCodeMsg").html("&#22269;&#31185;&#22823;&#22312;&#32447;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+            //&#23450;&#21046;&#20108;&#32500;&#30721;&#25195;&#30721;&#21518;&#25552;&#31034;&#35821;&#20462;&#25913;&#13;
+            $("#step2 p.g_code_over").html("&#35831;&#22312;&#31227;&#21160;&#31471;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;");&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#37325;&#26032;&#21152;&#36733;&#20108;&#32500;&#30721;&#13;
+    function refrushEwm(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    function loopStatus(){&#13;
+&#13;
+        jQuery.ajax({&#13;
+            url : _CP_+"/getauthstatus",&#13;
+            type :'post',&#13;
+            async : true,&#13;
+            data:{ "enc":enc,"uuid":uuid},&#13;
+            dataType : 'json',&#13;
+            success : function(data){&#13;
+                if(c &gt;= 50){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $(".ewmDisable").show();&#13;
+                    //window.location.reload();&#13;
+                }&#13;
+                c++;//&#35760;&#24405;&#24490;&#29615;&#27425;&#25968;&#13;
+                if(data.status){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $("#logining").show();&#13;
+                    if(ref != "undefined" &amp;&amp; ref != ''){&#13;
+                        if(ref == window.location.href){&#13;
+                            var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+                        }else{&#13;
+                            var url = ref;&#13;
+&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+&#13;
+                        }&#13;
+                    }else{&#13;
+                        var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                        if(window.parent != this.window){&#13;
+                            window.open(url,"_blank");&#13;
+                        }else{&#13;
+                            location.href = url;&#13;
+                        }&#13;
+                    }&#13;
+                }else{&#13;
+                    if(data.type == 4){//&#13;
+                        $("#shownickname").html(data.nickname);&#13;
+                        $("#photo").attr('src',"http://photo.chaoxing.com/p/"+data.uid+"_160");&#13;
+                        $("#step1").hide();&#13;
+                        $("#step2").show();&#13;
+                    }else if(data.type == 6){//&#23458;&#25143;&#31471;&#21462;&#28040;&#13;
+                        location.reload() ;&#13;
+                    }&#13;
+                }&#13;
+            }&#13;
+&#13;
+        });&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("ahszk.portal.chaoxing.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#31227;&#21160;&#31471;&#25195;&#30721;&#30331;&#24405;");&#13;
+        $("#ahszk_custom").show();&#13;
+    }else{&#13;
+        $("#ahszk_custom").hide();&#13;
+    }&#13;
+    if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+        $("#rightdiv").css("position","relative");&#13;
+        $("#rightdiv").css("margin","0 auto");&#13;
+        $("#rightdiv").css("border-left","0 ");&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#23398;&#22312;&#35199;&#30005;&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("dayi100.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#22823;&#21307;&#31934;&#35802;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+</script>&#13;
+        </div>&#13;
+        <!--&#40664;&#35748;&#30331;&#24405; end-->&#13;
+        <!--&#36890;&#30693;-->&#13;
+        <div class="lg-notice" id="notice" style="display:none;">&#13;
+            <h2 class="msg-title">&#36890;&#30693;</h2>&#13;
+            <p id="noticeContent">&#13;
+&#13;
+            </p>&#13;
+        </div>&#13;
+    </div>&#13;
+    <!--&#30331;&#24405; end-->&#13;
+</div>&#13;
+&#13;
+&#13;
+<script type="text/javascript" src="/js/fanya/login.js?v=2022117"/>&#13;
+<script>&#13;
+    let capInstance  = null;//&#23494;&#30721;&#28369;&#21160;&#26657;&#39564;&#29992;&#13;
+    // let twoLogincapInstance  = null;//&#21452;&#22240;&#23376;&#30331;&#24405;&#28369;&#21160;&#26657;&#39564;&#29992;&#13;
+    $(function () {&#13;
+        initTelList();&#13;
+        let needVcode = $("#needVcode").val();&#13;
+        if (needVcode == "1") {&#13;
+            loadSlide(null, function(){&#13;
+                loginByPhoneAndPwdSubmit();&#13;
+            });&#13;
+        }&#13;
+    })&#13;
+</script>&#13;
+<div id="captcha"/>&#13;
+</body>&#13;
+</html>
+
+<head>&#13;
+    <meta charset="UTF-8"/>&#13;
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>&#13;
+    <title>&#29992;&#25143;&#30331;&#24405;</title>&#13;
+    <link href="/css/fanya/common.css" rel="stylesheet"/>&#13;
+    <link href="/css/fanya/login.css" rel="stylesheet"/>&#13;
+    <link href="/css/fanya/twoFactorLoginPop.css" rel="stylesheet"/>&#13;
+    <script src="/js/jquery.min.js" type="text/javascript"/>&#13;
+    <script src="/js/common/jquery.base64.js" type="text/javascript"/>&#13;
+    <script src="/js/fanya/util.js" type="text/javascript"/>&#13;
+    <script src="/js/common/commonUtil.js?v=112" type="text/javascript"/>&#13;
+    <script src="/js/common/crypto-js.min.js" type="text/javascript"/>&#13;
+    <script>&#13;
+        $(function(){&#13;
+            if ($("#shownotice").val() == 1) {&#13;
+                showNotice($("#fid").val());&#13;
+            }&#13;
+            enterSubmit("loginBtn");&#13;
+&#13;
+            if(top != self){&#13;
+                $(".default-login").css("height","520px");&#13;
+                //$(".default-login").css("border-radius","0px");&#13;
+                //$(".default-login").css("box-shadow","");&#13;
+&#13;
+                $("body").css("background","none");&#13;
+                $(".lg-container").css("background","none");&#13;
+                $(".lg-container").css("border-top","none");&#13;
+&#13;
+&#13;
+            }&#13;
+&#13;
+            //&#21482;&#35201;&#37197;&#32622;&#20102;&#30331;&#24405;&#25552;&#31034;&#35821;&#65292;&#23601;&#37117;&#26174;&#31034;&#20986;&#26469;&#13;
+            let loginTip = "";&#13;
+            if (loginTip != "undefined" &amp;&amp; loginTip.trim() != "") {&#13;
+                $("#loginTip").show();&#13;
+            }&#13;
+&#13;
+            if ("https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("duxiu.com") != -1 || "https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("blyun.com") != -1 || "https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("zhizhen.com") != -1) {&#13;
+                $("#otherlogin").hide();&#13;
+                $("#showlogintext").html("&#36134;&#21495;&#30331;&#24405;");&#13;
+                $("#kf").hide();&#13;
+            }&#13;
+            if($("#showthird").val() == "1"){&#13;
+                $("#thirdLogin").show();&#13;
+            }&#13;
+&#13;
+            if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+                $("#leftdiv").hide();&#13;
+            }&#13;
+&#13;
+            if ("https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("dayi100.com") != -1) {&#13;
+                $("a[onclick='toRegister()']").hide();&#13;
+            }&#13;
+        });&#13;
+    </script>&#13;
+</head>&#13;
+
+
+<meta charset="UTF-8"/>&#13;
+    
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>&#13;
+    
+
+<title>&#29992;&#25143;&#30331;&#24405;</title>&#13;
+    
+
+<link href="/css/fanya/common.css" rel="stylesheet"/>&#13;
+    
+
+<link href="/css/fanya/login.css" rel="stylesheet"/>&#13;
+    
+
+<link href="/css/fanya/twoFactorLoginPop.css" rel="stylesheet"/>&#13;
+    
+
+<script src="/js/jquery.min.js" type="text/javascript"/>&#13;
+    
+
+<script src="/js/common/jquery.base64.js" type="text/javascript"/>&#13;
+    
+
+<script src="/js/fanya/util.js" type="text/javascript"/>&#13;
+    
+
+<script src="/js/common/commonUtil.js?v=112" type="text/javascript"/>&#13;
+    
+
+<script src="/js/common/crypto-js.min.js" type="text/javascript"/>&#13;
+    
+
+<script>&#13;
+        $(function(){&#13;
+            if ($("#shownotice").val() == 1) {&#13;
+                showNotice($("#fid").val());&#13;
+            }&#13;
+            enterSubmit("loginBtn");&#13;
+&#13;
+            if(top != self){&#13;
+                $(".default-login").css("height","520px");&#13;
+                //$(".default-login").css("border-radius","0px");&#13;
+                //$(".default-login").css("box-shadow","");&#13;
+&#13;
+                $("body").css("background","none");&#13;
+                $(".lg-container").css("background","none");&#13;
+                $(".lg-container").css("border-top","none");&#13;
+&#13;
+&#13;
+            }&#13;
+&#13;
+            //&#21482;&#35201;&#37197;&#32622;&#20102;&#30331;&#24405;&#25552;&#31034;&#35821;&#65292;&#23601;&#37117;&#26174;&#31034;&#20986;&#26469;&#13;
+            let loginTip = "";&#13;
+            if (loginTip != "undefined" &amp;&amp; loginTip.trim() != "") {&#13;
+                $("#loginTip").show();&#13;
+            }&#13;
+&#13;
+            if ("https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("duxiu.com") != -1 || "https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("blyun.com") != -1 || "https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("zhizhen.com") != -1) {&#13;
+                $("#otherlogin").hide();&#13;
+                $("#showlogintext").html("&#36134;&#21495;&#30331;&#24405;");&#13;
+                $("#kf").hide();&#13;
+            }&#13;
+            if($("#showthird").val() == "1"){&#13;
+                $("#thirdLogin").show();&#13;
+            }&#13;
+&#13;
+            if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+                $("#leftdiv").hide();&#13;
+            }&#13;
+&#13;
+            if ("https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b".indexOf("dayi100.com") != -1) {&#13;
+                $("a[onclick='toRegister()']").hide();&#13;
+            }&#13;
+        });&#13;
+    </script>&#13;
+
+
+<style type="text/css">&#13;
+    .Agreement{text-align:center;font-size: 12px;color: #A8A8B3;position:relative;left:0px;bottom:-70px;}&#13;
+    .Agreement a{display:inline-block;padding:0 5px;color:#3A8BFF}&#13;
+    .lg-title img{display:block;width:254px;height: 37px;margin:0 auto;}&#13;
+</style>&#13;
+
+
+<script>var _CP_ = '';</script>&#13;
+
+
+<body>&#13;
+<div class="lg-container">&#13;
+    <!--&#30331;&#24405; start -->&#13;
+    <div class="main default-login-main">&#13;
+        <!--&#40664;&#35748;&#30331;&#24405; start-->&#13;
+        <div class="default-login">&#13;
+            <div class="lg-top fs14">&#13;
+                <a href="/v5/toCustomer" target="_blank" class="service col-lightblue" id="kf">&#23458;&#26381;</a>&#13;
+            </div>&#13;
+            <div class="left" id="leftdiv">&#13;
+                                    <h3 class="lg-title" id="showlogintext">&#13;
+                                                    &#29992;&#25143;&#30331;&#24405;                                            </h3>&#13;
+                                <p id="loginTip" style="display:none;padding-bottom:10px;color:#A8A8B3;font-size:12px"/>&#13;
+                <form action="">&#13;
+                    <input type="hidden" id="needVcode" name="needVcode" value=""/>&#13;
+                    <input type="hidden" id="fid" name="fid" value="994"/>&#13;
+                    <input type="hidden" id="pid" name="pid" value="-1"/>&#13;
+                    <input type="hidden" id="refer" name="refer" value="https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b"/>&#13;
+                    <input type="hidden" id="forbidotherlogin" name="forbidotherlogin" value="0"/>&#13;
+                    <input type="hidden" id="t" name="t" value="true"/>&#13;
+                    <input type="hidden" id="_blank" value="0"/>&#13;
+                    <input type="hidden" id="regurl" value=""/>&#13;
+                    <input type="hidden" id="showthird" value="0"/>&#13;
+                    <input type="hidden" id="accounttip" value=""/>&#13;
+                    <input type="hidden" id="pwdtip" value=""/>&#13;
+                    <input type="hidden" id="quick" value="0"/>&#13;
+                    <input type="hidden" name="shownotice" id="shownotice" value="1"/>&#13;
+                    <input type="hidden" id="hidecompletephone" name="hidecompletephone" value="0"/>&#13;
+                    <input type="hidden" id="ebook" name="ebook" value="0"/>&#13;
+                    <input type="hidden" id="allowSkip" name="allowSkip" value="0"/>&#13;
+                    <input type="hidden" id="doubleFactorLogin" name="doubleFactorLogin" value="0"/>&#13;
+                    <input type="hidden" id="independentId" name="independentId" value="0"/>&#13;
+                    <!--&#30005;&#35805;&#21495;&#30721;-->&#13;
+                    <div class="lg-item icon-tel margin-btm24">&#13;
+                        <input type="text" class="ipt-tel" placeholder="&#25163;&#26426;&#21495;/&#36229;&#26143;&#21495;" id="phone" maxlength="50"/>&#13;
+                        <p class="err-txt" id="phoneMsg"/>&#13;
+                    </div>&#13;
+                    <!--&#23494;&#30721;-->&#13;
+                    <div class="lg-item item-pwd icon-pwd">&#13;
+                        <input type="password" class="ipt-pwd" placeholder="&#23398;&#20064;&#36890;&#23494;&#30721;" id="pwd" maxlength="20"/>&#13;
+                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        <a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        <p class="err-txt" id="pwdMsg"/>&#13;
+                    </div>&#13;
+                    <input type="hidden" name="validate" id="validate"/>&#13;
+                    <!--&#25353;&#38062;&#19981;&#21487;&#28857;&#20987; &#21152;&#19978;class&#65306;disable -->&#13;
+                    <div class="btns-box">&#13;
+                        <p class="err-tip" id="err-txt"/>&#13;
+                        <button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    </div>&#13;
+                </form>&#13;
+                <div class="clearaft fs14 pd-lr-24">&#13;
+                                            <a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">&#26032;&#29992;&#25143;&#27880;&#20876;</a>&#13;
+                                                    <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">&#25163;&#26426;&#39564;&#35777;&#30721;&#30331;&#24405;</a>&#13;
+                                            &#13;
+                </div>&#13;
+                <div class="line">&#13;
+                                            <a href="javaScript:otherLogin(3)" onclick="otherLogin(3)" id="otherlogin" class="col-lightblue fs14 icon-right">&#20854;&#23427;&#26041;&#24335;&#30331;&#24405;</a>&#13;
+                                    </div>&#13;
+                <p class="Agreement">&#30331;&#24405;&#21363;&#34920;&#31034;&#21516;&#24847;&#24179;&#21488;<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">&#12298;&#38544;&#31169;&#25919;&#31574;&#12299;</a>&#21644;<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">&#12298;&#29992;&#25143;&#21327;&#35758;&#12299;</a></p>&#13;
+            </div>&#13;
+            &#13;
+<style>&#13;
+&#13;
+    .social-login{color:#91A0B5;width:100%;position:absolute;left:0;bottom:30px;}&#13;
+    .social-login span{display:inline-block;margin:0 10px;}&#13;
+    .social-login span i{display:inline-block;width:20px;height:20px;margin-right:6px;}&#13;
+    .social-login span i img{width:100%;height:100%;vertical-align:middle;}&#13;
+    .social-login span.marLeft30{margin-left:30px;}&#13;
+&#13;
+</style>&#13;
+<div class="right" id="rightdiv">&#13;
+    <div id="step1">&#13;
+        <div class="ecode-box" style="position: relative;">&#13;
+&#13;
+&#13;
+            <style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            <div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            <input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            <input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            <img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            <span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        </div>&#13;
+        <p class="fs14 colorIn tip" id="quickCodeMsg">&#20351;&#29992;&#23398;&#20064;&#36890;APP&#25195;&#30721;&#30331;&#24405;</p>&#13;
+    </div>&#13;
+&#13;
+    <div class="social-login" style="display: none" id="thirdLogin">&#31038;&#20132;&#36134;&#21495;&#30331;&#24405;&#13;
+        <span onclick="to_third_login('weixin')" class="marLeft30" style=" cursor: pointer; "><i><img src="/images/common/weixin.png"/></i>&#24494;&#20449;</span>&#13;
+        <span onclick="to_third_login('qq')" style=" cursor: pointer; "><i><img src="/images/common/qq.png"/></i>QQ</span>&#13;
+    </div>&#13;
+&#13;
+    <div class="Rmain-cont" style="display:none" id="step2">&#13;
+        <div class="g_code_end">&#13;
+            <img src="" alt="" id="photo"/>&#13;
+        </div>&#13;
+        <p class="g_code_name mt30" id="shownickname"/>&#13;
+        <p class="g_code_over">&#35831;&#22312;&#23398;&#20064;&#36890;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;</p>&#13;
+        <p class="g_code_btn" onclick="changeUser();" style="cursor:pointer;color: #3A8BFF;">&#36820;&#22238;&#25195;&#30721;</p>&#13;
+    </div>&#13;
+&#13;
+&#13;
+&#13;
+</div>&#13;
+&#13;
+<script type="text/javascript">&#13;
+    /***/&#13;
+    function to_third_login(type,ref){&#13;
+        var fd=$("#fid").val();&#13;
+        if ("qq" == type) {&#13;
+            window.location.href="/oauth2/qq?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        } else if("weixin" == type){&#13;
+            window.location.href="/oauth2/weixin?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        }&#13;
+    }&#13;
+    function hideQRcode(){&#13;
+        $(".right").hide();&#13;
+        $(".default-login-main").attr("class","main default-login-min");&#13;
+    }&#13;
+&#13;
+&#13;
+    function changeUser(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    var qrInterValObj;&#13;
+    var enc = $("#enc").val();&#13;
+    var uuid = $("#uuid").val();&#13;
+    var ref = decodeURIComponent($("#refer").val());&#13;
+    var c =  0 ;&#13;
+&#13;
+    //&#36229;&#26143;&#38405;&#35835;&#22120; SSREADER/4.1.6.0001 &#20027;&#29256;&#26412;&#21495;&#22823;&#20110;&#31561;&#20110;4 &#38544;&#34255;&#25195;&#30721;&#30331;&#24405;&#13;
+    let userAgent = navigator.userAgent;&#13;
+    if (userAgent.indexOf("SSREADER/")&gt;-1){&#13;
+        let versionArr = userAgent.substr(0,10).split("/");&#13;
+        if (versionArr[1] &gt;= 4){&#13;
+            hideQRcode();&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#23450;&#21046;&#19981;&#26174;&#31034;&#20108;&#32500;&#30721;&#13;
+    if( 1 != 1 || 1 != 1){&#13;
+        hideQRcode();&#13;
+    }else if(994 == 34415){&#13;
+        $("#quickCode").attr("src","images/guide/34415ewm.png");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#19979;&#36733;&#31227;&#21160;&#23458;&#25143;&#31471;");&#13;
+    }else if(994 == 9566){&#13;
+        $("#quickCode").attr("src","images/guide/9566ewm.jpg");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#20851;&#27880;&#24494;&#20449;&#20844;&#20247;&#21495;");&#13;
+    }else{&#13;
+        qrInterValObj = window.setInterval(loopStatus, 3000); //&#21551;&#21160;&#35745;&#26102;&#22120;&#65292;1&#31186;&#25191;&#34892;&#19968;&#27425;&#13;
+        if(994 == 35014){&#13;
+            $("#quickCodeMsg").html("&#22269;&#31185;&#22823;&#22312;&#32447;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+            //&#23450;&#21046;&#20108;&#32500;&#30721;&#25195;&#30721;&#21518;&#25552;&#31034;&#35821;&#20462;&#25913;&#13;
+            $("#step2 p.g_code_over").html("&#35831;&#22312;&#31227;&#21160;&#31471;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;");&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#37325;&#26032;&#21152;&#36733;&#20108;&#32500;&#30721;&#13;
+    function refrushEwm(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    function loopStatus(){&#13;
+&#13;
+        jQuery.ajax({&#13;
+            url : _CP_+"/getauthstatus",&#13;
+            type :'post',&#13;
+            async : true,&#13;
+            data:{ "enc":enc,"uuid":uuid},&#13;
+            dataType : 'json',&#13;
+            success : function(data){&#13;
+                if(c &gt;= 50){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $(".ewmDisable").show();&#13;
+                    //window.location.reload();&#13;
+                }&#13;
+                c++;//&#35760;&#24405;&#24490;&#29615;&#27425;&#25968;&#13;
+                if(data.status){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $("#logining").show();&#13;
+                    if(ref != "undefined" &amp;&amp; ref != ''){&#13;
+                        if(ref == window.location.href){&#13;
+                            var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+                        }else{&#13;
+                            var url = ref;&#13;
+&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+&#13;
+                        }&#13;
+                    }else{&#13;
+                        var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                        if(window.parent != this.window){&#13;
+                            window.open(url,"_blank");&#13;
+                        }else{&#13;
+                            location.href = url;&#13;
+                        }&#13;
+                    }&#13;
+                }else{&#13;
+                    if(data.type == 4){//&#13;
+                        $("#shownickname").html(data.nickname);&#13;
+                        $("#photo").attr('src',"http://photo.chaoxing.com/p/"+data.uid+"_160");&#13;
+                        $("#step1").hide();&#13;
+                        $("#step2").show();&#13;
+                    }else if(data.type == 6){//&#23458;&#25143;&#31471;&#21462;&#28040;&#13;
+                        location.reload() ;&#13;
+                    }&#13;
+                }&#13;
+            }&#13;
+&#13;
+        });&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("ahszk.portal.chaoxing.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#31227;&#21160;&#31471;&#25195;&#30721;&#30331;&#24405;");&#13;
+        $("#ahszk_custom").show();&#13;
+    }else{&#13;
+        $("#ahszk_custom").hide();&#13;
+    }&#13;
+    if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+        $("#rightdiv").css("position","relative");&#13;
+        $("#rightdiv").css("margin","0 auto");&#13;
+        $("#rightdiv").css("border-left","0 ");&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#23398;&#22312;&#35199;&#30005;&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("dayi100.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#22823;&#21307;&#31934;&#35802;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+</script>&#13;
+        </div>&#13;
+        <!--&#40664;&#35748;&#30331;&#24405; end-->&#13;
+        <!--&#36890;&#30693;-->&#13;
+        <div class="lg-notice" id="notice" style="display:none;">&#13;
+            <h2 class="msg-title">&#36890;&#30693;</h2>&#13;
+            <p id="noticeContent">&#13;
+&#13;
+            </p>&#13;
+        </div>&#13;
+    </div>&#13;
+    <!--&#30331;&#24405; end-->&#13;
+</div>&#13;
+&#13;
+&#13;
+<script type="text/javascript" src="/js/fanya/login.js?v=2022117"/>&#13;
+<script>&#13;
+    let capInstance  = null;//&#23494;&#30721;&#28369;&#21160;&#26657;&#39564;&#29992;&#13;
+    // let twoLogincapInstance  = null;//&#21452;&#22240;&#23376;&#30331;&#24405;&#28369;&#21160;&#26657;&#39564;&#29992;&#13;
+    $(function () {&#13;
+        initTelList();&#13;
+        let needVcode = $("#needVcode").val();&#13;
+        if (needVcode == "1") {&#13;
+            loadSlide(null, function(){&#13;
+                loginByPhoneAndPwdSubmit();&#13;
+            });&#13;
+        }&#13;
+    })&#13;
+</script>&#13;
+<div id="captcha"/>&#13;
+</body>&#13;
+
+
+<div class="lg-container">&#13;
+    <!--&#30331;&#24405; start -->&#13;
+    <div class="main default-login-main">&#13;
+        <!--&#40664;&#35748;&#30331;&#24405; start-->&#13;
+        <div class="default-login">&#13;
+            <div class="lg-top fs14">&#13;
+                <a href="/v5/toCustomer" target="_blank" class="service col-lightblue" id="kf">&#23458;&#26381;</a>&#13;
+            </div>&#13;
+            <div class="left" id="leftdiv">&#13;
+                                    <h3 class="lg-title" id="showlogintext">&#13;
+                                                    &#29992;&#25143;&#30331;&#24405;                                            </h3>&#13;
+                                <p id="loginTip" style="display:none;padding-bottom:10px;color:#A8A8B3;font-size:12px"/>&#13;
+                <form action="">&#13;
+                    <input type="hidden" id="needVcode" name="needVcode" value=""/>&#13;
+                    <input type="hidden" id="fid" name="fid" value="994"/>&#13;
+                    <input type="hidden" id="pid" name="pid" value="-1"/>&#13;
+                    <input type="hidden" id="refer" name="refer" value="https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b"/>&#13;
+                    <input type="hidden" id="forbidotherlogin" name="forbidotherlogin" value="0"/>&#13;
+                    <input type="hidden" id="t" name="t" value="true"/>&#13;
+                    <input type="hidden" id="_blank" value="0"/>&#13;
+                    <input type="hidden" id="regurl" value=""/>&#13;
+                    <input type="hidden" id="showthird" value="0"/>&#13;
+                    <input type="hidden" id="accounttip" value=""/>&#13;
+                    <input type="hidden" id="pwdtip" value=""/>&#13;
+                    <input type="hidden" id="quick" value="0"/>&#13;
+                    <input type="hidden" name="shownotice" id="shownotice" value="1"/>&#13;
+                    <input type="hidden" id="hidecompletephone" name="hidecompletephone" value="0"/>&#13;
+                    <input type="hidden" id="ebook" name="ebook" value="0"/>&#13;
+                    <input type="hidden" id="allowSkip" name="allowSkip" value="0"/>&#13;
+                    <input type="hidden" id="doubleFactorLogin" name="doubleFactorLogin" value="0"/>&#13;
+                    <input type="hidden" id="independentId" name="independentId" value="0"/>&#13;
+                    <!--&#30005;&#35805;&#21495;&#30721;-->&#13;
+                    <div class="lg-item icon-tel margin-btm24">&#13;
+                        <input type="text" class="ipt-tel" placeholder="&#25163;&#26426;&#21495;/&#36229;&#26143;&#21495;" id="phone" maxlength="50"/>&#13;
+                        <p class="err-txt" id="phoneMsg"/>&#13;
+                    </div>&#13;
+                    <!--&#23494;&#30721;-->&#13;
+                    <div class="lg-item item-pwd icon-pwd">&#13;
+                        <input type="password" class="ipt-pwd" placeholder="&#23398;&#20064;&#36890;&#23494;&#30721;" id="pwd" maxlength="20"/>&#13;
+                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        <a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        <p class="err-txt" id="pwdMsg"/>&#13;
+                    </div>&#13;
+                    <input type="hidden" name="validate" id="validate"/>&#13;
+                    <!--&#25353;&#38062;&#19981;&#21487;&#28857;&#20987; &#21152;&#19978;class&#65306;disable -->&#13;
+                    <div class="btns-box">&#13;
+                        <p class="err-tip" id="err-txt"/>&#13;
+                        <button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    </div>&#13;
+                </form>&#13;
+                <div class="clearaft fs14 pd-lr-24">&#13;
+                                            <a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">&#26032;&#29992;&#25143;&#27880;&#20876;</a>&#13;
+                                                    <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">&#25163;&#26426;&#39564;&#35777;&#30721;&#30331;&#24405;</a>&#13;
+                                            &#13;
+                </div>&#13;
+                <div class="line">&#13;
+                                            <a href="javaScript:otherLogin(3)" onclick="otherLogin(3)" id="otherlogin" class="col-lightblue fs14 icon-right">&#20854;&#23427;&#26041;&#24335;&#30331;&#24405;</a>&#13;
+                                    </div>&#13;
+                <p class="Agreement">&#30331;&#24405;&#21363;&#34920;&#31034;&#21516;&#24847;&#24179;&#21488;<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">&#12298;&#38544;&#31169;&#25919;&#31574;&#12299;</a>&#21644;<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">&#12298;&#29992;&#25143;&#21327;&#35758;&#12299;</a></p>&#13;
+            </div>&#13;
+            &#13;
+<style>&#13;
+&#13;
+    .social-login{color:#91A0B5;width:100%;position:absolute;left:0;bottom:30px;}&#13;
+    .social-login span{display:inline-block;margin:0 10px;}&#13;
+    .social-login span i{display:inline-block;width:20px;height:20px;margin-right:6px;}&#13;
+    .social-login span i img{width:100%;height:100%;vertical-align:middle;}&#13;
+    .social-login span.marLeft30{margin-left:30px;}&#13;
+&#13;
+</style>&#13;
+<div class="right" id="rightdiv">&#13;
+    <div id="step1">&#13;
+        <div class="ecode-box" style="position: relative;">&#13;
+&#13;
+&#13;
+            <style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            <div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            <input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            <input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            <img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            <span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        </div>&#13;
+        <p class="fs14 colorIn tip" id="quickCodeMsg">&#20351;&#29992;&#23398;&#20064;&#36890;APP&#25195;&#30721;&#30331;&#24405;</p>&#13;
+    </div>&#13;
+&#13;
+    <div class="social-login" style="display: none" id="thirdLogin">&#31038;&#20132;&#36134;&#21495;&#30331;&#24405;&#13;
+        <span onclick="to_third_login('weixin')" class="marLeft30" style=" cursor: pointer; "><i><img src="/images/common/weixin.png"/></i>&#24494;&#20449;</span>&#13;
+        <span onclick="to_third_login('qq')" style=" cursor: pointer; "><i><img src="/images/common/qq.png"/></i>QQ</span>&#13;
+    </div>&#13;
+&#13;
+    <div class="Rmain-cont" style="display:none" id="step2">&#13;
+        <div class="g_code_end">&#13;
+            <img src="" alt="" id="photo"/>&#13;
+        </div>&#13;
+        <p class="g_code_name mt30" id="shownickname"/>&#13;
+        <p class="g_code_over">&#35831;&#22312;&#23398;&#20064;&#36890;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;</p>&#13;
+        <p class="g_code_btn" onclick="changeUser();" style="cursor:pointer;color: #3A8BFF;">&#36820;&#22238;&#25195;&#30721;</p>&#13;
+    </div>&#13;
+&#13;
+&#13;
+&#13;
+</div>&#13;
+&#13;
+<script type="text/javascript">&#13;
+    /***/&#13;
+    function to_third_login(type,ref){&#13;
+        var fd=$("#fid").val();&#13;
+        if ("qq" == type) {&#13;
+            window.location.href="/oauth2/qq?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        } else if("weixin" == type){&#13;
+            window.location.href="/oauth2/weixin?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        }&#13;
+    }&#13;
+    function hideQRcode(){&#13;
+        $(".right").hide();&#13;
+        $(".default-login-main").attr("class","main default-login-min");&#13;
+    }&#13;
+&#13;
+&#13;
+    function changeUser(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    var qrInterValObj;&#13;
+    var enc = $("#enc").val();&#13;
+    var uuid = $("#uuid").val();&#13;
+    var ref = decodeURIComponent($("#refer").val());&#13;
+    var c =  0 ;&#13;
+&#13;
+    //&#36229;&#26143;&#38405;&#35835;&#22120; SSREADER/4.1.6.0001 &#20027;&#29256;&#26412;&#21495;&#22823;&#20110;&#31561;&#20110;4 &#38544;&#34255;&#25195;&#30721;&#30331;&#24405;&#13;
+    let userAgent = navigator.userAgent;&#13;
+    if (userAgent.indexOf("SSREADER/")&gt;-1){&#13;
+        let versionArr = userAgent.substr(0,10).split("/");&#13;
+        if (versionArr[1] &gt;= 4){&#13;
+            hideQRcode();&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#23450;&#21046;&#19981;&#26174;&#31034;&#20108;&#32500;&#30721;&#13;
+    if( 1 != 1 || 1 != 1){&#13;
+        hideQRcode();&#13;
+    }else if(994 == 34415){&#13;
+        $("#quickCode").attr("src","images/guide/34415ewm.png");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#19979;&#36733;&#31227;&#21160;&#23458;&#25143;&#31471;");&#13;
+    }else if(994 == 9566){&#13;
+        $("#quickCode").attr("src","images/guide/9566ewm.jpg");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#20851;&#27880;&#24494;&#20449;&#20844;&#20247;&#21495;");&#13;
+    }else{&#13;
+        qrInterValObj = window.setInterval(loopStatus, 3000); //&#21551;&#21160;&#35745;&#26102;&#22120;&#65292;1&#31186;&#25191;&#34892;&#19968;&#27425;&#13;
+        if(994 == 35014){&#13;
+            $("#quickCodeMsg").html("&#22269;&#31185;&#22823;&#22312;&#32447;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+            //&#23450;&#21046;&#20108;&#32500;&#30721;&#25195;&#30721;&#21518;&#25552;&#31034;&#35821;&#20462;&#25913;&#13;
+            $("#step2 p.g_code_over").html("&#35831;&#22312;&#31227;&#21160;&#31471;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;");&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#37325;&#26032;&#21152;&#36733;&#20108;&#32500;&#30721;&#13;
+    function refrushEwm(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    function loopStatus(){&#13;
+&#13;
+        jQuery.ajax({&#13;
+            url : _CP_+"/getauthstatus",&#13;
+            type :'post',&#13;
+            async : true,&#13;
+            data:{ "enc":enc,"uuid":uuid},&#13;
+            dataType : 'json',&#13;
+            success : function(data){&#13;
+                if(c &gt;= 50){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $(".ewmDisable").show();&#13;
+                    //window.location.reload();&#13;
+                }&#13;
+                c++;//&#35760;&#24405;&#24490;&#29615;&#27425;&#25968;&#13;
+                if(data.status){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $("#logining").show();&#13;
+                    if(ref != "undefined" &amp;&amp; ref != ''){&#13;
+                        if(ref == window.location.href){&#13;
+                            var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+                        }else{&#13;
+                            var url = ref;&#13;
+&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+&#13;
+                        }&#13;
+                    }else{&#13;
+                        var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                        if(window.parent != this.window){&#13;
+                            window.open(url,"_blank");&#13;
+                        }else{&#13;
+                            location.href = url;&#13;
+                        }&#13;
+                    }&#13;
+                }else{&#13;
+                    if(data.type == 4){//&#13;
+                        $("#shownickname").html(data.nickname);&#13;
+                        $("#photo").attr('src',"http://photo.chaoxing.com/p/"+data.uid+"_160");&#13;
+                        $("#step1").hide();&#13;
+                        $("#step2").show();&#13;
+                    }else if(data.type == 6){//&#23458;&#25143;&#31471;&#21462;&#28040;&#13;
+                        location.reload() ;&#13;
+                    }&#13;
+                }&#13;
+            }&#13;
+&#13;
+        });&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("ahszk.portal.chaoxing.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#31227;&#21160;&#31471;&#25195;&#30721;&#30331;&#24405;");&#13;
+        $("#ahszk_custom").show();&#13;
+    }else{&#13;
+        $("#ahszk_custom").hide();&#13;
+    }&#13;
+    if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+        $("#rightdiv").css("position","relative");&#13;
+        $("#rightdiv").css("margin","0 auto");&#13;
+        $("#rightdiv").css("border-left","0 ");&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#23398;&#22312;&#35199;&#30005;&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("dayi100.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#22823;&#21307;&#31934;&#35802;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+</script>&#13;
+        </div>&#13;
+        <!--&#40664;&#35748;&#30331;&#24405; end-->&#13;
+        <!--&#36890;&#30693;-->&#13;
+        <div class="lg-notice" id="notice" style="display:none;">&#13;
+            <h2 class="msg-title">&#36890;&#30693;</h2>&#13;
+            <p id="noticeContent">&#13;
+&#13;
+            </p>&#13;
+        </div>&#13;
+    </div>&#13;
+    <!--&#30331;&#24405; end-->&#13;
+</div>&#13;
+&#13;
+&#13;
+
+
+<div class="main default-login-main">&#13;
+        <!--&#40664;&#35748;&#30331;&#24405; start-->&#13;
+        <div class="default-login">&#13;
+            <div class="lg-top fs14">&#13;
+                <a href="/v5/toCustomer" target="_blank" class="service col-lightblue" id="kf">&#23458;&#26381;</a>&#13;
+            </div>&#13;
+            <div class="left" id="leftdiv">&#13;
+                                    <h3 class="lg-title" id="showlogintext">&#13;
+                                                    &#29992;&#25143;&#30331;&#24405;                                            </h3>&#13;
+                                <p id="loginTip" style="display:none;padding-bottom:10px;color:#A8A8B3;font-size:12px"/>&#13;
+                <form action="">&#13;
+                    <input type="hidden" id="needVcode" name="needVcode" value=""/>&#13;
+                    <input type="hidden" id="fid" name="fid" value="994"/>&#13;
+                    <input type="hidden" id="pid" name="pid" value="-1"/>&#13;
+                    <input type="hidden" id="refer" name="refer" value="https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b"/>&#13;
+                    <input type="hidden" id="forbidotherlogin" name="forbidotherlogin" value="0"/>&#13;
+                    <input type="hidden" id="t" name="t" value="true"/>&#13;
+                    <input type="hidden" id="_blank" value="0"/>&#13;
+                    <input type="hidden" id="regurl" value=""/>&#13;
+                    <input type="hidden" id="showthird" value="0"/>&#13;
+                    <input type="hidden" id="accounttip" value=""/>&#13;
+                    <input type="hidden" id="pwdtip" value=""/>&#13;
+                    <input type="hidden" id="quick" value="0"/>&#13;
+                    <input type="hidden" name="shownotice" id="shownotice" value="1"/>&#13;
+                    <input type="hidden" id="hidecompletephone" name="hidecompletephone" value="0"/>&#13;
+                    <input type="hidden" id="ebook" name="ebook" value="0"/>&#13;
+                    <input type="hidden" id="allowSkip" name="allowSkip" value="0"/>&#13;
+                    <input type="hidden" id="doubleFactorLogin" name="doubleFactorLogin" value="0"/>&#13;
+                    <input type="hidden" id="independentId" name="independentId" value="0"/>&#13;
+                    <!--&#30005;&#35805;&#21495;&#30721;-->&#13;
+                    <div class="lg-item icon-tel margin-btm24">&#13;
+                        <input type="text" class="ipt-tel" placeholder="&#25163;&#26426;&#21495;/&#36229;&#26143;&#21495;" id="phone" maxlength="50"/>&#13;
+                        <p class="err-txt" id="phoneMsg"/>&#13;
+                    </div>&#13;
+                    <!--&#23494;&#30721;-->&#13;
+                    <div class="lg-item item-pwd icon-pwd">&#13;
+                        <input type="password" class="ipt-pwd" placeholder="&#23398;&#20064;&#36890;&#23494;&#30721;" id="pwd" maxlength="20"/>&#13;
+                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        <a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        <p class="err-txt" id="pwdMsg"/>&#13;
+                    </div>&#13;
+                    <input type="hidden" name="validate" id="validate"/>&#13;
+                    <!--&#25353;&#38062;&#19981;&#21487;&#28857;&#20987; &#21152;&#19978;class&#65306;disable -->&#13;
+                    <div class="btns-box">&#13;
+                        <p class="err-tip" id="err-txt"/>&#13;
+                        <button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    </div>&#13;
+                </form>&#13;
+                <div class="clearaft fs14 pd-lr-24">&#13;
+                                            <a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">&#26032;&#29992;&#25143;&#27880;&#20876;</a>&#13;
+                                                    <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">&#25163;&#26426;&#39564;&#35777;&#30721;&#30331;&#24405;</a>&#13;
+                                            &#13;
+                </div>&#13;
+                <div class="line">&#13;
+                                            <a href="javaScript:otherLogin(3)" onclick="otherLogin(3)" id="otherlogin" class="col-lightblue fs14 icon-right">&#20854;&#23427;&#26041;&#24335;&#30331;&#24405;</a>&#13;
+                                    </div>&#13;
+                <p class="Agreement">&#30331;&#24405;&#21363;&#34920;&#31034;&#21516;&#24847;&#24179;&#21488;<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">&#12298;&#38544;&#31169;&#25919;&#31574;&#12299;</a>&#21644;<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">&#12298;&#29992;&#25143;&#21327;&#35758;&#12299;</a></p>&#13;
+            </div>&#13;
+            &#13;
+<style>&#13;
+&#13;
+    .social-login{color:#91A0B5;width:100%;position:absolute;left:0;bottom:30px;}&#13;
+    .social-login span{display:inline-block;margin:0 10px;}&#13;
+    .social-login span i{display:inline-block;width:20px;height:20px;margin-right:6px;}&#13;
+    .social-login span i img{width:100%;height:100%;vertical-align:middle;}&#13;
+    .social-login span.marLeft30{margin-left:30px;}&#13;
+&#13;
+</style>&#13;
+<div class="right" id="rightdiv">&#13;
+    <div id="step1">&#13;
+        <div class="ecode-box" style="position: relative;">&#13;
+&#13;
+&#13;
+            <style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            <div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            <input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            <input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            <img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            <span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        </div>&#13;
+        <p class="fs14 colorIn tip" id="quickCodeMsg">&#20351;&#29992;&#23398;&#20064;&#36890;APP&#25195;&#30721;&#30331;&#24405;</p>&#13;
+    </div>&#13;
+&#13;
+    <div class="social-login" style="display: none" id="thirdLogin">&#31038;&#20132;&#36134;&#21495;&#30331;&#24405;&#13;
+        <span onclick="to_third_login('weixin')" class="marLeft30" style=" cursor: pointer; "><i><img src="/images/common/weixin.png"/></i>&#24494;&#20449;</span>&#13;
+        <span onclick="to_third_login('qq')" style=" cursor: pointer; "><i><img src="/images/common/qq.png"/></i>QQ</span>&#13;
+    </div>&#13;
+&#13;
+    <div class="Rmain-cont" style="display:none" id="step2">&#13;
+        <div class="g_code_end">&#13;
+            <img src="" alt="" id="photo"/>&#13;
+        </div>&#13;
+        <p class="g_code_name mt30" id="shownickname"/>&#13;
+        <p class="g_code_over">&#35831;&#22312;&#23398;&#20064;&#36890;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;</p>&#13;
+        <p class="g_code_btn" onclick="changeUser();" style="cursor:pointer;color: #3A8BFF;">&#36820;&#22238;&#25195;&#30721;</p>&#13;
+    </div>&#13;
+&#13;
+&#13;
+&#13;
+</div>&#13;
+&#13;
+<script type="text/javascript">&#13;
+    /***/&#13;
+    function to_third_login(type,ref){&#13;
+        var fd=$("#fid").val();&#13;
+        if ("qq" == type) {&#13;
+            window.location.href="/oauth2/qq?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        } else if("weixin" == type){&#13;
+            window.location.href="/oauth2/weixin?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        }&#13;
+    }&#13;
+    function hideQRcode(){&#13;
+        $(".right").hide();&#13;
+        $(".default-login-main").attr("class","main default-login-min");&#13;
+    }&#13;
+&#13;
+&#13;
+    function changeUser(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    var qrInterValObj;&#13;
+    var enc = $("#enc").val();&#13;
+    var uuid = $("#uuid").val();&#13;
+    var ref = decodeURIComponent($("#refer").val());&#13;
+    var c =  0 ;&#13;
+&#13;
+    //&#36229;&#26143;&#38405;&#35835;&#22120; SSREADER/4.1.6.0001 &#20027;&#29256;&#26412;&#21495;&#22823;&#20110;&#31561;&#20110;4 &#38544;&#34255;&#25195;&#30721;&#30331;&#24405;&#13;
+    let userAgent = navigator.userAgent;&#13;
+    if (userAgent.indexOf("SSREADER/")&gt;-1){&#13;
+        let versionArr = userAgent.substr(0,10).split("/");&#13;
+        if (versionArr[1] &gt;= 4){&#13;
+            hideQRcode();&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#23450;&#21046;&#19981;&#26174;&#31034;&#20108;&#32500;&#30721;&#13;
+    if( 1 != 1 || 1 != 1){&#13;
+        hideQRcode();&#13;
+    }else if(994 == 34415){&#13;
+        $("#quickCode").attr("src","images/guide/34415ewm.png");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#19979;&#36733;&#31227;&#21160;&#23458;&#25143;&#31471;");&#13;
+    }else if(994 == 9566){&#13;
+        $("#quickCode").attr("src","images/guide/9566ewm.jpg");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#20851;&#27880;&#24494;&#20449;&#20844;&#20247;&#21495;");&#13;
+    }else{&#13;
+        qrInterValObj = window.setInterval(loopStatus, 3000); //&#21551;&#21160;&#35745;&#26102;&#22120;&#65292;1&#31186;&#25191;&#34892;&#19968;&#27425;&#13;
+        if(994 == 35014){&#13;
+            $("#quickCodeMsg").html("&#22269;&#31185;&#22823;&#22312;&#32447;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+            //&#23450;&#21046;&#20108;&#32500;&#30721;&#25195;&#30721;&#21518;&#25552;&#31034;&#35821;&#20462;&#25913;&#13;
+            $("#step2 p.g_code_over").html("&#35831;&#22312;&#31227;&#21160;&#31471;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;");&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#37325;&#26032;&#21152;&#36733;&#20108;&#32500;&#30721;&#13;
+    function refrushEwm(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    function loopStatus(){&#13;
+&#13;
+        jQuery.ajax({&#13;
+            url : _CP_+"/getauthstatus",&#13;
+            type :'post',&#13;
+            async : true,&#13;
+            data:{ "enc":enc,"uuid":uuid},&#13;
+            dataType : 'json',&#13;
+            success : function(data){&#13;
+                if(c &gt;= 50){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $(".ewmDisable").show();&#13;
+                    //window.location.reload();&#13;
+                }&#13;
+                c++;//&#35760;&#24405;&#24490;&#29615;&#27425;&#25968;&#13;
+                if(data.status){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $("#logining").show();&#13;
+                    if(ref != "undefined" &amp;&amp; ref != ''){&#13;
+                        if(ref == window.location.href){&#13;
+                            var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+                        }else{&#13;
+                            var url = ref;&#13;
+&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+&#13;
+                        }&#13;
+                    }else{&#13;
+                        var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                        if(window.parent != this.window){&#13;
+                            window.open(url,"_blank");&#13;
+                        }else{&#13;
+                            location.href = url;&#13;
+                        }&#13;
+                    }&#13;
+                }else{&#13;
+                    if(data.type == 4){//&#13;
+                        $("#shownickname").html(data.nickname);&#13;
+                        $("#photo").attr('src',"http://photo.chaoxing.com/p/"+data.uid+"_160");&#13;
+                        $("#step1").hide();&#13;
+                        $("#step2").show();&#13;
+                    }else if(data.type == 6){//&#23458;&#25143;&#31471;&#21462;&#28040;&#13;
+                        location.reload() ;&#13;
+                    }&#13;
+                }&#13;
+            }&#13;
+&#13;
+        });&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("ahszk.portal.chaoxing.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#31227;&#21160;&#31471;&#25195;&#30721;&#30331;&#24405;");&#13;
+        $("#ahszk_custom").show();&#13;
+    }else{&#13;
+        $("#ahszk_custom").hide();&#13;
+    }&#13;
+    if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+        $("#rightdiv").css("position","relative");&#13;
+        $("#rightdiv").css("margin","0 auto");&#13;
+        $("#rightdiv").css("border-left","0 ");&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#23398;&#22312;&#35199;&#30005;&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("dayi100.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#22823;&#21307;&#31934;&#35802;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+</script>&#13;
+        </div>&#13;
+        <!--&#40664;&#35748;&#30331;&#24405; end-->&#13;
+        <!--&#36890;&#30693;-->&#13;
+        <div class="lg-notice" id="notice" style="display:none;">&#13;
+            <h2 class="msg-title">&#36890;&#30693;</h2>&#13;
+            <p id="noticeContent">&#13;
+&#13;
+            </p>&#13;
+        </div>&#13;
+    </div>&#13;
+    
+
+<div class="default-login">&#13;
+            <div class="lg-top fs14">&#13;
+                <a href="/v5/toCustomer" target="_blank" class="service col-lightblue" id="kf">&#23458;&#26381;</a>&#13;
+            </div>&#13;
+            <div class="left" id="leftdiv">&#13;
+                                    <h3 class="lg-title" id="showlogintext">&#13;
+                                                    &#29992;&#25143;&#30331;&#24405;                                            </h3>&#13;
+                                <p id="loginTip" style="display:none;padding-bottom:10px;color:#A8A8B3;font-size:12px"/>&#13;
+                <form action="">&#13;
+                    <input type="hidden" id="needVcode" name="needVcode" value=""/>&#13;
+                    <input type="hidden" id="fid" name="fid" value="994"/>&#13;
+                    <input type="hidden" id="pid" name="pid" value="-1"/>&#13;
+                    <input type="hidden" id="refer" name="refer" value="https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b"/>&#13;
+                    <input type="hidden" id="forbidotherlogin" name="forbidotherlogin" value="0"/>&#13;
+                    <input type="hidden" id="t" name="t" value="true"/>&#13;
+                    <input type="hidden" id="_blank" value="0"/>&#13;
+                    <input type="hidden" id="regurl" value=""/>&#13;
+                    <input type="hidden" id="showthird" value="0"/>&#13;
+                    <input type="hidden" id="accounttip" value=""/>&#13;
+                    <input type="hidden" id="pwdtip" value=""/>&#13;
+                    <input type="hidden" id="quick" value="0"/>&#13;
+                    <input type="hidden" name="shownotice" id="shownotice" value="1"/>&#13;
+                    <input type="hidden" id="hidecompletephone" name="hidecompletephone" value="0"/>&#13;
+                    <input type="hidden" id="ebook" name="ebook" value="0"/>&#13;
+                    <input type="hidden" id="allowSkip" name="allowSkip" value="0"/>&#13;
+                    <input type="hidden" id="doubleFactorLogin" name="doubleFactorLogin" value="0"/>&#13;
+                    <input type="hidden" id="independentId" name="independentId" value="0"/>&#13;
+                    <!--&#30005;&#35805;&#21495;&#30721;-->&#13;
+                    <div class="lg-item icon-tel margin-btm24">&#13;
+                        <input type="text" class="ipt-tel" placeholder="&#25163;&#26426;&#21495;/&#36229;&#26143;&#21495;" id="phone" maxlength="50"/>&#13;
+                        <p class="err-txt" id="phoneMsg"/>&#13;
+                    </div>&#13;
+                    <!--&#23494;&#30721;-->&#13;
+                    <div class="lg-item item-pwd icon-pwd">&#13;
+                        <input type="password" class="ipt-pwd" placeholder="&#23398;&#20064;&#36890;&#23494;&#30721;" id="pwd" maxlength="20"/>&#13;
+                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        <a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        <p class="err-txt" id="pwdMsg"/>&#13;
+                    </div>&#13;
+                    <input type="hidden" name="validate" id="validate"/>&#13;
+                    <!--&#25353;&#38062;&#19981;&#21487;&#28857;&#20987; &#21152;&#19978;class&#65306;disable -->&#13;
+                    <div class="btns-box">&#13;
+                        <p class="err-tip" id="err-txt"/>&#13;
+                        <button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    </div>&#13;
+                </form>&#13;
+                <div class="clearaft fs14 pd-lr-24">&#13;
+                                            <a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">&#26032;&#29992;&#25143;&#27880;&#20876;</a>&#13;
+                                                    <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">&#25163;&#26426;&#39564;&#35777;&#30721;&#30331;&#24405;</a>&#13;
+                                            &#13;
+                </div>&#13;
+                <div class="line">&#13;
+                                            <a href="javaScript:otherLogin(3)" onclick="otherLogin(3)" id="otherlogin" class="col-lightblue fs14 icon-right">&#20854;&#23427;&#26041;&#24335;&#30331;&#24405;</a>&#13;
+                                    </div>&#13;
+                <p class="Agreement">&#30331;&#24405;&#21363;&#34920;&#31034;&#21516;&#24847;&#24179;&#21488;<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">&#12298;&#38544;&#31169;&#25919;&#31574;&#12299;</a>&#21644;<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">&#12298;&#29992;&#25143;&#21327;&#35758;&#12299;</a></p>&#13;
+            </div>&#13;
+            &#13;
+<style>&#13;
+&#13;
+    .social-login{color:#91A0B5;width:100%;position:absolute;left:0;bottom:30px;}&#13;
+    .social-login span{display:inline-block;margin:0 10px;}&#13;
+    .social-login span i{display:inline-block;width:20px;height:20px;margin-right:6px;}&#13;
+    .social-login span i img{width:100%;height:100%;vertical-align:middle;}&#13;
+    .social-login span.marLeft30{margin-left:30px;}&#13;
+&#13;
+</style>&#13;
+<div class="right" id="rightdiv">&#13;
+    <div id="step1">&#13;
+        <div class="ecode-box" style="position: relative;">&#13;
+&#13;
+&#13;
+            <style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            <div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            <input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            <input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            <img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            <span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        </div>&#13;
+        <p class="fs14 colorIn tip" id="quickCodeMsg">&#20351;&#29992;&#23398;&#20064;&#36890;APP&#25195;&#30721;&#30331;&#24405;</p>&#13;
+    </div>&#13;
+&#13;
+    <div class="social-login" style="display: none" id="thirdLogin">&#31038;&#20132;&#36134;&#21495;&#30331;&#24405;&#13;
+        <span onclick="to_third_login('weixin')" class="marLeft30" style=" cursor: pointer; "><i><img src="/images/common/weixin.png"/></i>&#24494;&#20449;</span>&#13;
+        <span onclick="to_third_login('qq')" style=" cursor: pointer; "><i><img src="/images/common/qq.png"/></i>QQ</span>&#13;
+    </div>&#13;
+&#13;
+    <div class="Rmain-cont" style="display:none" id="step2">&#13;
+        <div class="g_code_end">&#13;
+            <img src="" alt="" id="photo"/>&#13;
+        </div>&#13;
+        <p class="g_code_name mt30" id="shownickname"/>&#13;
+        <p class="g_code_over">&#35831;&#22312;&#23398;&#20064;&#36890;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;</p>&#13;
+        <p class="g_code_btn" onclick="changeUser();" style="cursor:pointer;color: #3A8BFF;">&#36820;&#22238;&#25195;&#30721;</p>&#13;
+    </div>&#13;
+&#13;
+&#13;
+&#13;
+</div>&#13;
+&#13;
+<script type="text/javascript">&#13;
+    /***/&#13;
+    function to_third_login(type,ref){&#13;
+        var fd=$("#fid").val();&#13;
+        if ("qq" == type) {&#13;
+            window.location.href="/oauth2/qq?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        } else if("weixin" == type){&#13;
+            window.location.href="/oauth2/weixin?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        }&#13;
+    }&#13;
+    function hideQRcode(){&#13;
+        $(".right").hide();&#13;
+        $(".default-login-main").attr("class","main default-login-min");&#13;
+    }&#13;
+&#13;
+&#13;
+    function changeUser(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    var qrInterValObj;&#13;
+    var enc = $("#enc").val();&#13;
+    var uuid = $("#uuid").val();&#13;
+    var ref = decodeURIComponent($("#refer").val());&#13;
+    var c =  0 ;&#13;
+&#13;
+    //&#36229;&#26143;&#38405;&#35835;&#22120; SSREADER/4.1.6.0001 &#20027;&#29256;&#26412;&#21495;&#22823;&#20110;&#31561;&#20110;4 &#38544;&#34255;&#25195;&#30721;&#30331;&#24405;&#13;
+    let userAgent = navigator.userAgent;&#13;
+    if (userAgent.indexOf("SSREADER/")&gt;-1){&#13;
+        let versionArr = userAgent.substr(0,10).split("/");&#13;
+        if (versionArr[1] &gt;= 4){&#13;
+            hideQRcode();&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#23450;&#21046;&#19981;&#26174;&#31034;&#20108;&#32500;&#30721;&#13;
+    if( 1 != 1 || 1 != 1){&#13;
+        hideQRcode();&#13;
+    }else if(994 == 34415){&#13;
+        $("#quickCode").attr("src","images/guide/34415ewm.png");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#19979;&#36733;&#31227;&#21160;&#23458;&#25143;&#31471;");&#13;
+    }else if(994 == 9566){&#13;
+        $("#quickCode").attr("src","images/guide/9566ewm.jpg");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#20851;&#27880;&#24494;&#20449;&#20844;&#20247;&#21495;");&#13;
+    }else{&#13;
+        qrInterValObj = window.setInterval(loopStatus, 3000); //&#21551;&#21160;&#35745;&#26102;&#22120;&#65292;1&#31186;&#25191;&#34892;&#19968;&#27425;&#13;
+        if(994 == 35014){&#13;
+            $("#quickCodeMsg").html("&#22269;&#31185;&#22823;&#22312;&#32447;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+            //&#23450;&#21046;&#20108;&#32500;&#30721;&#25195;&#30721;&#21518;&#25552;&#31034;&#35821;&#20462;&#25913;&#13;
+            $("#step2 p.g_code_over").html("&#35831;&#22312;&#31227;&#21160;&#31471;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;");&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#37325;&#26032;&#21152;&#36733;&#20108;&#32500;&#30721;&#13;
+    function refrushEwm(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    function loopStatus(){&#13;
+&#13;
+        jQuery.ajax({&#13;
+            url : _CP_+"/getauthstatus",&#13;
+            type :'post',&#13;
+            async : true,&#13;
+            data:{ "enc":enc,"uuid":uuid},&#13;
+            dataType : 'json',&#13;
+            success : function(data){&#13;
+                if(c &gt;= 50){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $(".ewmDisable").show();&#13;
+                    //window.location.reload();&#13;
+                }&#13;
+                c++;//&#35760;&#24405;&#24490;&#29615;&#27425;&#25968;&#13;
+                if(data.status){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $("#logining").show();&#13;
+                    if(ref != "undefined" &amp;&amp; ref != ''){&#13;
+                        if(ref == window.location.href){&#13;
+                            var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+                        }else{&#13;
+                            var url = ref;&#13;
+&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+&#13;
+                        }&#13;
+                    }else{&#13;
+                        var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                        if(window.parent != this.window){&#13;
+                            window.open(url,"_blank");&#13;
+                        }else{&#13;
+                            location.href = url;&#13;
+                        }&#13;
+                    }&#13;
+                }else{&#13;
+                    if(data.type == 4){//&#13;
+                        $("#shownickname").html(data.nickname);&#13;
+                        $("#photo").attr('src',"http://photo.chaoxing.com/p/"+data.uid+"_160");&#13;
+                        $("#step1").hide();&#13;
+                        $("#step2").show();&#13;
+                    }else if(data.type == 6){//&#23458;&#25143;&#31471;&#21462;&#28040;&#13;
+                        location.reload() ;&#13;
+                    }&#13;
+                }&#13;
+            }&#13;
+&#13;
+        });&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("ahszk.portal.chaoxing.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#31227;&#21160;&#31471;&#25195;&#30721;&#30331;&#24405;");&#13;
+        $("#ahszk_custom").show();&#13;
+    }else{&#13;
+        $("#ahszk_custom").hide();&#13;
+    }&#13;
+    if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+        $("#rightdiv").css("position","relative");&#13;
+        $("#rightdiv").css("margin","0 auto");&#13;
+        $("#rightdiv").css("border-left","0 ");&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#23398;&#22312;&#35199;&#30005;&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("dayi100.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#22823;&#21307;&#31934;&#35802;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+</script>&#13;
+        </div>&#13;
+        
+
+<div class="lg-top fs14">&#13;
+                <a href="/v5/toCustomer" target="_blank" class="service col-lightblue" id="kf">&#23458;&#26381;</a>&#13;
+            </div>&#13;
+            
+
+<a href="/v5/toCustomer" target="_blank" class="service col-lightblue" id="kf">&#23458;&#26381;</a>&#13;
+            
+
+<div class="left" id="leftdiv">&#13;
+                                    <h3 class="lg-title" id="showlogintext">&#13;
+                                                    &#29992;&#25143;&#30331;&#24405;                                            </h3>&#13;
+                                <p id="loginTip" style="display:none;padding-bottom:10px;color:#A8A8B3;font-size:12px"/>&#13;
+                <form action="">&#13;
+                    <input type="hidden" id="needVcode" name="needVcode" value=""/>&#13;
+                    <input type="hidden" id="fid" name="fid" value="994"/>&#13;
+                    <input type="hidden" id="pid" name="pid" value="-1"/>&#13;
+                    <input type="hidden" id="refer" name="refer" value="https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b"/>&#13;
+                    <input type="hidden" id="forbidotherlogin" name="forbidotherlogin" value="0"/>&#13;
+                    <input type="hidden" id="t" name="t" value="true"/>&#13;
+                    <input type="hidden" id="_blank" value="0"/>&#13;
+                    <input type="hidden" id="regurl" value=""/>&#13;
+                    <input type="hidden" id="showthird" value="0"/>&#13;
+                    <input type="hidden" id="accounttip" value=""/>&#13;
+                    <input type="hidden" id="pwdtip" value=""/>&#13;
+                    <input type="hidden" id="quick" value="0"/>&#13;
+                    <input type="hidden" name="shownotice" id="shownotice" value="1"/>&#13;
+                    <input type="hidden" id="hidecompletephone" name="hidecompletephone" value="0"/>&#13;
+                    <input type="hidden" id="ebook" name="ebook" value="0"/>&#13;
+                    <input type="hidden" id="allowSkip" name="allowSkip" value="0"/>&#13;
+                    <input type="hidden" id="doubleFactorLogin" name="doubleFactorLogin" value="0"/>&#13;
+                    <input type="hidden" id="independentId" name="independentId" value="0"/>&#13;
+                    <!--&#30005;&#35805;&#21495;&#30721;-->&#13;
+                    <div class="lg-item icon-tel margin-btm24">&#13;
+                        <input type="text" class="ipt-tel" placeholder="&#25163;&#26426;&#21495;/&#36229;&#26143;&#21495;" id="phone" maxlength="50"/>&#13;
+                        <p class="err-txt" id="phoneMsg"/>&#13;
+                    </div>&#13;
+                    <!--&#23494;&#30721;-->&#13;
+                    <div class="lg-item item-pwd icon-pwd">&#13;
+                        <input type="password" class="ipt-pwd" placeholder="&#23398;&#20064;&#36890;&#23494;&#30721;" id="pwd" maxlength="20"/>&#13;
+                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        <a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        <p class="err-txt" id="pwdMsg"/>&#13;
+                    </div>&#13;
+                    <input type="hidden" name="validate" id="validate"/>&#13;
+                    <!--&#25353;&#38062;&#19981;&#21487;&#28857;&#20987; &#21152;&#19978;class&#65306;disable -->&#13;
+                    <div class="btns-box">&#13;
+                        <p class="err-tip" id="err-txt"/>&#13;
+                        <button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    </div>&#13;
+                </form>&#13;
+                <div class="clearaft fs14 pd-lr-24">&#13;
+                                            <a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">&#26032;&#29992;&#25143;&#27880;&#20876;</a>&#13;
+                                                    <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">&#25163;&#26426;&#39564;&#35777;&#30721;&#30331;&#24405;</a>&#13;
+                                            &#13;
+                </div>&#13;
+                <div class="line">&#13;
+                                            <a href="javaScript:otherLogin(3)" onclick="otherLogin(3)" id="otherlogin" class="col-lightblue fs14 icon-right">&#20854;&#23427;&#26041;&#24335;&#30331;&#24405;</a>&#13;
+                                    </div>&#13;
+                <p class="Agreement">&#30331;&#24405;&#21363;&#34920;&#31034;&#21516;&#24847;&#24179;&#21488;<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">&#12298;&#38544;&#31169;&#25919;&#31574;&#12299;</a>&#21644;<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">&#12298;&#29992;&#25143;&#21327;&#35758;&#12299;</a></p>&#13;
+            </div>&#13;
+            &#13;
+
+
+<h3 class="lg-title" id="showlogintext">&#13;
+                                                    &#29992;&#25143;&#30331;&#24405;                                            </h3>&#13;
+                                
+
+<p id="loginTip" style="display:none;padding-bottom:10px;color:#A8A8B3;font-size:12px"/>&#13;
+                
+
+<form action="">&#13;
+                    <input type="hidden" id="needVcode" name="needVcode" value=""/>&#13;
+                    <input type="hidden" id="fid" name="fid" value="994"/>&#13;
+                    <input type="hidden" id="pid" name="pid" value="-1"/>&#13;
+                    <input type="hidden" id="refer" name="refer" value="https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b"/>&#13;
+                    <input type="hidden" id="forbidotherlogin" name="forbidotherlogin" value="0"/>&#13;
+                    <input type="hidden" id="t" name="t" value="true"/>&#13;
+                    <input type="hidden" id="_blank" value="0"/>&#13;
+                    <input type="hidden" id="regurl" value=""/>&#13;
+                    <input type="hidden" id="showthird" value="0"/>&#13;
+                    <input type="hidden" id="accounttip" value=""/>&#13;
+                    <input type="hidden" id="pwdtip" value=""/>&#13;
+                    <input type="hidden" id="quick" value="0"/>&#13;
+                    <input type="hidden" name="shownotice" id="shownotice" value="1"/>&#13;
+                    <input type="hidden" id="hidecompletephone" name="hidecompletephone" value="0"/>&#13;
+                    <input type="hidden" id="ebook" name="ebook" value="0"/>&#13;
+                    <input type="hidden" id="allowSkip" name="allowSkip" value="0"/>&#13;
+                    <input type="hidden" id="doubleFactorLogin" name="doubleFactorLogin" value="0"/>&#13;
+                    <input type="hidden" id="independentId" name="independentId" value="0"/>&#13;
+                    <!--&#30005;&#35805;&#21495;&#30721;-->&#13;
+                    <div class="lg-item icon-tel margin-btm24">&#13;
+                        <input type="text" class="ipt-tel" placeholder="&#25163;&#26426;&#21495;/&#36229;&#26143;&#21495;" id="phone" maxlength="50"/>&#13;
+                        <p class="err-txt" id="phoneMsg"/>&#13;
+                    </div>&#13;
+                    <!--&#23494;&#30721;-->&#13;
+                    <div class="lg-item item-pwd icon-pwd">&#13;
+                        <input type="password" class="ipt-pwd" placeholder="&#23398;&#20064;&#36890;&#23494;&#30721;" id="pwd" maxlength="20"/>&#13;
+                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        <a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        <p class="err-txt" id="pwdMsg"/>&#13;
+                    </div>&#13;
+                    <input type="hidden" name="validate" id="validate"/>&#13;
+                    <!--&#25353;&#38062;&#19981;&#21487;&#28857;&#20987; &#21152;&#19978;class&#65306;disable -->&#13;
+                    <div class="btns-box">&#13;
+                        <p class="err-tip" id="err-txt"/>&#13;
+                        <button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    </div>&#13;
+                </form>&#13;
+                
+
+<input type="hidden" id="needVcode" name="needVcode" value=""/>&#13;
+                    
+
+<input type="hidden" id="fid" name="fid" value="994"/>&#13;
+                    
+
+<input type="hidden" id="pid" name="pid" value="-1"/>&#13;
+                    
+
+<input type="hidden" id="refer" name="refer" value="https%3A%2F%2Fmooc1-2.chaoxing.com%2Fmycourse%2Fstudentstudy%3FchapterId%3D705031349%26courseId%3D233064127%26clazzid%3D73268956%26enc%3D5a17349bcdf71ca5590b4226284bee2b"/>&#13;
+                    
+
+<input type="hidden" id="forbidotherlogin" name="forbidotherlogin" value="0"/>&#13;
+                    
+
+<input type="hidden" id="t" name="t" value="true"/>&#13;
+                    
+
+<input type="hidden" id="_blank" value="0"/>&#13;
+                    
+
+<input type="hidden" id="regurl" value=""/>&#13;
+                    
+
+<input type="hidden" id="showthird" value="0"/>&#13;
+                    
+
+<input type="hidden" id="accounttip" value=""/>&#13;
+                    
+
+<input type="hidden" id="pwdtip" value=""/>&#13;
+                    
+
+<input type="hidden" id="quick" value="0"/>&#13;
+                    
+
+<input type="hidden" name="shownotice" id="shownotice" value="1"/>&#13;
+                    
+
+<input type="hidden" id="hidecompletephone" name="hidecompletephone" value="0"/>&#13;
+                    
+
+<input type="hidden" id="ebook" name="ebook" value="0"/>&#13;
+                    
+
+<input type="hidden" id="allowSkip" name="allowSkip" value="0"/>&#13;
+                    
+
+<input type="hidden" id="doubleFactorLogin" name="doubleFactorLogin" value="0"/>&#13;
+                    
+
+<input type="hidden" id="independentId" name="independentId" value="0"/>&#13;
+                    
+
+<div class="lg-item icon-tel margin-btm24">&#13;
+                        <input type="text" class="ipt-tel" placeholder="&#25163;&#26426;&#21495;/&#36229;&#26143;&#21495;" id="phone" maxlength="50"/>&#13;
+                        <p class="err-txt" id="phoneMsg"/>&#13;
+                    </div>&#13;
+                    
+
+<input type="text" class="ipt-tel" placeholder="&#x624B;&#x673A;&#x53F7;/&#x8D85;&#x661F;&#x53F7;" id="phone" maxlength="50"/>&#13;
+                        
+
+<p class="err-txt" id="phoneMsg"/>&#13;
+                    
+
+<div class="lg-item item-pwd icon-pwd">&#13;
+                        <input type="password" class="ipt-pwd" placeholder="&#23398;&#20064;&#36890;&#23494;&#30721;" id="pwd" maxlength="20"/>&#13;
+                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        <a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        <p class="err-txt" id="pwdMsg"/>&#13;
+                    </div>&#13;
+                    
+
+<input type="password" class="ipt-pwd" placeholder="&#x5B66;&#x4E60;&#x901A;&#x5BC6;&#x7801;" id="pwd" maxlength="20"/>&#13;
+                        
+
+<i class="icon-eye icon-eye-close" onclick="initPassword(this)"/>&#13;
+                        
+
+<a href="javaScript:void(0)" onclick="toFindPwd()" class="col-lightblue pos-r24">&#24536;&#35760;&#23494;&#30721;?</a>&#13;
+                        
+
+<p class="err-txt" id="pwdMsg"/>&#13;
+                    
+
+<input type="hidden" name="validate" id="validate"/>&#13;
+                    
+
+<div class="btns-box">&#13;
+                        <p class="err-tip" id="err-txt"/>&#13;
+                        <button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    </div>&#13;
+                
+
+<p class="err-tip" id="err-txt"/>&#13;
+                        
+
+<button type="button" class="btn-big-blue margin-btm24" onclick="loginByPhoneAndPwd();" id="loginBtn">&#30331;&#24405;</button>&#13;
+                    
+
+<div class="clearaft fs14 pd-lr-24">&#13;
+                                            <a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">&#26032;&#29992;&#25143;&#27880;&#20876;</a>&#13;
+                                                    <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">&#25163;&#26426;&#39564;&#35777;&#30721;&#30331;&#24405;</a>&#13;
+                                            &#13;
+                </div>&#13;
+                
+
+<a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">&#26032;&#29992;&#25143;&#27880;&#20876;</a>&#13;
+                                                    
+
+<a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">&#25163;&#26426;&#39564;&#35777;&#30721;&#30331;&#24405;</a>&#13;
+                                            &#13;
+                
+
+<div class="line">&#13;
+                                            <a href="javaScript:otherLogin(3)" onclick="otherLogin(3)" id="otherlogin" class="col-lightblue fs14 icon-right">&#20854;&#23427;&#26041;&#24335;&#30331;&#24405;</a>&#13;
+                                    </div>&#13;
+                
+
+<a href="javaScript:otherLogin(3)" onclick="otherLogin(3)" id="otherlogin" class="col-lightblue fs14 icon-right">&#20854;&#23427;&#26041;&#24335;&#30331;&#24405;</a>&#13;
+                                    
+
+<p class="Agreement">&#30331;&#24405;&#21363;&#34920;&#31034;&#21516;&#24847;&#24179;&#21488;<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">&#12298;&#38544;&#31169;&#25919;&#31574;&#12299;</a>&#21644;<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">&#12298;&#29992;&#25143;&#21327;&#35758;&#12299;</a></p>&#13;
+            
+
+<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">&#12298;&#38544;&#31169;&#25919;&#31574;&#12299;</a>&#21644;
+
+<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">&#12298;&#29992;&#25143;&#21327;&#35758;&#12299;</a>
+
+<style>&#13;
+&#13;
+    .social-login{color:#91A0B5;width:100%;position:absolute;left:0;bottom:30px;}&#13;
+    .social-login span{display:inline-block;margin:0 10px;}&#13;
+    .social-login span i{display:inline-block;width:20px;height:20px;margin-right:6px;}&#13;
+    .social-login span i img{width:100%;height:100%;vertical-align:middle;}&#13;
+    .social-login span.marLeft30{margin-left:30px;}&#13;
+&#13;
+</style>&#13;
+
+
+<div class="right" id="rightdiv">&#13;
+    <div id="step1">&#13;
+        <div class="ecode-box" style="position: relative;">&#13;
+&#13;
+&#13;
+            <style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            <div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            <input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            <input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            <img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            <span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        </div>&#13;
+        <p class="fs14 colorIn tip" id="quickCodeMsg">&#20351;&#29992;&#23398;&#20064;&#36890;APP&#25195;&#30721;&#30331;&#24405;</p>&#13;
+    </div>&#13;
+&#13;
+    <div class="social-login" style="display: none" id="thirdLogin">&#31038;&#20132;&#36134;&#21495;&#30331;&#24405;&#13;
+        <span onclick="to_third_login('weixin')" class="marLeft30" style=" cursor: pointer; "><i><img src="/images/common/weixin.png"/></i>&#24494;&#20449;</span>&#13;
+        <span onclick="to_third_login('qq')" style=" cursor: pointer; "><i><img src="/images/common/qq.png"/></i>QQ</span>&#13;
+    </div>&#13;
+&#13;
+    <div class="Rmain-cont" style="display:none" id="step2">&#13;
+        <div class="g_code_end">&#13;
+            <img src="" alt="" id="photo"/>&#13;
+        </div>&#13;
+        <p class="g_code_name mt30" id="shownickname"/>&#13;
+        <p class="g_code_over">&#35831;&#22312;&#23398;&#20064;&#36890;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;</p>&#13;
+        <p class="g_code_btn" onclick="changeUser();" style="cursor:pointer;color: #3A8BFF;">&#36820;&#22238;&#25195;&#30721;</p>&#13;
+    </div>&#13;
+&#13;
+&#13;
+&#13;
+</div>&#13;
+&#13;
+
+
+<div id="step1">&#13;
+        <div class="ecode-box" style="position: relative;">&#13;
+&#13;
+&#13;
+            <style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            <div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            <input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            <input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            <img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            <span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        </div>&#13;
+        <p class="fs14 colorIn tip" id="quickCodeMsg">&#20351;&#29992;&#23398;&#20064;&#36890;APP&#25195;&#30721;&#30331;&#24405;</p>&#13;
+    </div>&#13;
+&#13;
+    
+
+<div class="ecode-box" style="position: relative;">&#13;
+&#13;
+&#13;
+            <style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            <div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            <input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            <input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            <img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            <span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        </div>&#13;
+        
+
+<style>&#13;
+                .ewmDisable{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.9);z-index:3;display:none;}&#13;
+                .ewmDisable p{width:100%;text-align:center;font-size:18px;color:#181e33;margin-top:80px;}&#13;
+                .ewmDisable a{display:inline-block;width:94px;height:34px;background: #FFFFFF;border: 1px solid #3A8BFF;border-radius: 18px;margin:0 auto;text-align:center;line-height:34px;font-size: 14px;color: #3A8BFF;margin-top:10px;}&#13;
+            </style>&#13;
+            
+
+<div class="ewmDisable">&#13;
+                <p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                <a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            </div>&#13;
+&#13;
+            
+
+<p>&#20108;&#32500;&#30721;&#24050;&#22833;&#25928;</p>&#13;
+                
+
+<a href="javascript:void(0);" onclick="refrushEwm();">&#37325;&#26032;&#33719;&#21462;</a>&#13;
+&#13;
+            
+
+<input type="hidden" value="c3d57838daef48099c837894d1970b74" id="uuid"/>&#13;
+            
+
+<input type="hidden" value="5a7f92f417703080ff435076cd4dd2f8" id="enc"/>&#13;
+            
+
+<img src="/createqr?uuid=c3d57838daef48099c837894d1970b74&amp;fid=994" id="quickCode"/>&#13;
+&#13;
+            
+
+<span id="ahszk_custom" style="width: 30px;height: 30px;display:inline-block;position: absolute;left: 50%;top: 50%;margin-left: -12px;margin-top: -15px;">&#13;
+        <img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        </span>&#13;
+        
+
+<img src="/images/fanya/ahszk.png" style="width:30px;height:30px;"/>&#13;
+        
+
+<p class="fs14 colorIn tip" id="quickCodeMsg">&#20351;&#29992;&#23398;&#20064;&#36890;APP&#25195;&#30721;&#30331;&#24405;</p>&#13;
+    
+
+<div class="social-login" style="display: none" id="thirdLogin">&#31038;&#20132;&#36134;&#21495;&#30331;&#24405;&#13;
+        <span onclick="to_third_login('weixin')" class="marLeft30" style=" cursor: pointer; "><i><img src="/images/common/weixin.png"/></i>&#24494;&#20449;</span>&#13;
+        <span onclick="to_third_login('qq')" style=" cursor: pointer; "><i><img src="/images/common/qq.png"/></i>QQ</span>&#13;
+    </div>&#13;
+&#13;
+    
+
+<span onclick="to_third_login('weixin')" class="marLeft30" style=" cursor: pointer; "><i><img src="/images/common/weixin.png"/></i>&#24494;&#20449;</span>&#13;
+        
+
+<i>
+  <img src="/images/common/weixin.png"/>
+</i>&#24494;&#20449;
+
+<img src="/images/common/weixin.png"/>
+
+<span onclick="to_third_login('qq')" style=" cursor: pointer; "><i><img src="/images/common/qq.png"/></i>QQ</span>&#13;
+    
+
+<i>
+  <img src="/images/common/qq.png"/>
+</i>QQ
+
+<img src="/images/common/qq.png"/>
+
+<div class="Rmain-cont" style="display:none" id="step2">&#13;
+        <div class="g_code_end">&#13;
+            <img src="" alt="" id="photo"/>&#13;
+        </div>&#13;
+        <p class="g_code_name mt30" id="shownickname"/>&#13;
+        <p class="g_code_over">&#35831;&#22312;&#23398;&#20064;&#36890;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;</p>&#13;
+        <p class="g_code_btn" onclick="changeUser();" style="cursor:pointer;color: #3A8BFF;">&#36820;&#22238;&#25195;&#30721;</p>&#13;
+    </div>&#13;
+&#13;
+&#13;
+&#13;
+
+
+<div class="g_code_end">&#13;
+            <img src="" alt="" id="photo"/>&#13;
+        </div>&#13;
+        
+
+<img src="" alt="" id="photo"/>&#13;
+        
+
+<p class="g_code_name mt30" id="shownickname"/>&#13;
+        
+
+<p class="g_code_over">&#35831;&#22312;&#23398;&#20064;&#36890;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;</p>&#13;
+        
+
+<p class="g_code_btn" onclick="changeUser();" style="cursor:pointer;color: #3A8BFF;">&#36820;&#22238;&#25195;&#30721;</p>&#13;
+    
+
+<script type="text/javascript">&#13;
+    /***/&#13;
+    function to_third_login(type,ref){&#13;
+        var fd=$("#fid").val();&#13;
+        if ("qq" == type) {&#13;
+            window.location.href="/oauth2/qq?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        } else if("weixin" == type){&#13;
+            window.location.href="/oauth2/weixin?newversion=true&amp;fid="+fd+"&amp;refer="+$("#refer").val();&#13;
+        }&#13;
+    }&#13;
+    function hideQRcode(){&#13;
+        $(".right").hide();&#13;
+        $(".default-login-main").attr("class","main default-login-min");&#13;
+    }&#13;
+&#13;
+&#13;
+    function changeUser(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    var qrInterValObj;&#13;
+    var enc = $("#enc").val();&#13;
+    var uuid = $("#uuid").val();&#13;
+    var ref = decodeURIComponent($("#refer").val());&#13;
+    var c =  0 ;&#13;
+&#13;
+    //&#36229;&#26143;&#38405;&#35835;&#22120; SSREADER/4.1.6.0001 &#20027;&#29256;&#26412;&#21495;&#22823;&#20110;&#31561;&#20110;4 &#38544;&#34255;&#25195;&#30721;&#30331;&#24405;&#13;
+    let userAgent = navigator.userAgent;&#13;
+    if (userAgent.indexOf("SSREADER/")&gt;-1){&#13;
+        let versionArr = userAgent.substr(0,10).split("/");&#13;
+        if (versionArr[1] &gt;= 4){&#13;
+            hideQRcode();&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#23450;&#21046;&#19981;&#26174;&#31034;&#20108;&#32500;&#30721;&#13;
+    if( 1 != 1 || 1 != 1){&#13;
+        hideQRcode();&#13;
+    }else if(994 == 34415){&#13;
+        $("#quickCode").attr("src","images/guide/34415ewm.png");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#19979;&#36733;&#31227;&#21160;&#23458;&#25143;&#31471;");&#13;
+    }else if(994 == 9566){&#13;
+        $("#quickCode").attr("src","images/guide/9566ewm.jpg");&#13;
+        $("#quickCodeMsg").html("&#25195;&#19968;&#25195;&#20851;&#27880;&#24494;&#20449;&#20844;&#20247;&#21495;");&#13;
+    }else{&#13;
+        qrInterValObj = window.setInterval(loopStatus, 3000); //&#21551;&#21160;&#35745;&#26102;&#22120;&#65292;1&#31186;&#25191;&#34892;&#19968;&#27425;&#13;
+        if(994 == 35014){&#13;
+            $("#quickCodeMsg").html("&#22269;&#31185;&#22823;&#22312;&#32447;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+            //&#23450;&#21046;&#20108;&#32500;&#30721;&#25195;&#30721;&#21518;&#25552;&#31034;&#35821;&#20462;&#25913;&#13;
+            $("#step2 p.g_code_over").html("&#35831;&#22312;&#31227;&#21160;&#31471;&#19978;&#28857;&#20987;&#30830;&#35748;&#20197;&#30331;&#24405;");&#13;
+        }&#13;
+    }&#13;
+&#13;
+    //&#37325;&#26032;&#21152;&#36733;&#20108;&#32500;&#30721;&#13;
+    function refrushEwm(){&#13;
+        window.location.reload();&#13;
+    }&#13;
+    function loopStatus(){&#13;
+&#13;
+        jQuery.ajax({&#13;
+            url : _CP_+"/getauthstatus",&#13;
+            type :'post',&#13;
+            async : true,&#13;
+            data:{ "enc":enc,"uuid":uuid},&#13;
+            dataType : 'json',&#13;
+            success : function(data){&#13;
+                if(c &gt;= 50){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $(".ewmDisable").show();&#13;
+                    //window.location.reload();&#13;
+                }&#13;
+                c++;//&#35760;&#24405;&#24490;&#29615;&#27425;&#25968;&#13;
+                if(data.status){&#13;
+                    window.clearInterval(qrInterValObj);//&#20572;&#27490;&#35745;&#26102;&#22120;&#13;
+                    $("#logining").show();&#13;
+                    if(ref != "undefined" &amp;&amp; ref != ''){&#13;
+                        if(ref == window.location.href){&#13;
+                            var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+                        }else{&#13;
+                            var url = ref;&#13;
+&#13;
+                            if(top.location != self.location){&#13;
+                                top.location = url;&#13;
+                            }else{&#13;
+                                window.location = url;&#13;
+                            }&#13;
+&#13;
+                        }&#13;
+                    }else{&#13;
+                        var url = "http://i.mooc.chaoxing.com/space/index";&#13;
+                        if(window.parent != this.window){&#13;
+                            window.open(url,"_blank");&#13;
+                        }else{&#13;
+                            location.href = url;&#13;
+                        }&#13;
+                    }&#13;
+                }else{&#13;
+                    if(data.type == 4){//&#13;
+                        $("#shownickname").html(data.nickname);&#13;
+                        $("#photo").attr('src',"http://photo.chaoxing.com/p/"+data.uid+"_160");&#13;
+                        $("#step1").hide();&#13;
+                        $("#step2").show();&#13;
+                    }else if(data.type == 6){//&#23458;&#25143;&#31471;&#21462;&#28040;&#13;
+                        location.reload() ;&#13;
+                    }&#13;
+                }&#13;
+            }&#13;
+&#13;
+        });&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("ahszk.portal.chaoxing.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#31227;&#21160;&#31471;&#25195;&#30721;&#30331;&#24405;");&#13;
+        $("#ahszk_custom").show();&#13;
+    }else{&#13;
+        $("#ahszk_custom").hide();&#13;
+    }&#13;
+    if (navigator.userAgent.indexOf("1000332") != -1) {&#13;
+        $("#rightdiv").css("position","relative");&#13;
+        $("#rightdiv").css("margin","0 auto");&#13;
+        $("#rightdiv").css("border-left","0 ");&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#23398;&#22312;&#35199;&#30005;&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+&#13;
+    if($("#refer").val().indexOf("dayi100.com") != -1){&#13;
+        $("#quickCodeMsg").html("&#20351;&#29992;&#22823;&#21307;&#31934;&#35802;APP&#25195;&#30721;&#30331;&#24405;");&#13;
+    }&#13;
+</script>&#13;
+        
+
+<div class="lg-notice" id="notice" style="display:none;">&#13;
+            <h2 class="msg-title">&#36890;&#30693;</h2>&#13;
+            <p id="noticeContent">&#13;
+&#13;
+            </p>&#13;
+        </div>&#13;
+    
+
+<h2 class="msg-title">&#36890;&#30693;</h2>&#13;
+            
+
+<p id="noticeContent">&#13;
+&#13;
+            </p>&#13;
+        
+
+<script type="text/javascript" src="/js/fanya/login.js?v=2022117"/>&#13;
+
+
+<script>&#13;
+    let capInstance  = null;//&#23494;&#30721;&#28369;&#21160;&#26657;&#39564;&#29992;&#13;
+    // let twoLogincapInstance  = null;//&#21452;&#22240;&#23376;&#30331;&#24405;&#28369;&#21160;&#26657;&#39564;&#29992;&#13;
+    $(function () {&#13;
+        initTelList();&#13;
+        let needVcode = $("#needVcode").val();&#13;
+        if (needVcode == "1") {&#13;
+            loadSlide(null, function(){&#13;
+                loginByPhoneAndPwdSubmit();&#13;
+            });&#13;
+        }&#13;
+    })&#13;
+</script>&#13;
+
+
+<div id="captcha"/>&#13;
 
 
 
