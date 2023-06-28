@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <script src="js/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        #black-area {
+            background-color: #000;
+            margin: 0;
+            border: 0;
+            padding: 8px;
+            width: 244px;
+            height: 566px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        #newchat {
+            color: #fff;
+            border: 1px solid #d9d9e3;
+            padding: 12px;
+            width: 166px;
+            height: 18px;
+            border-radius: 5px;
+            margin-bottom: 24px;
+        }
+
+        #bottom-line {
+            border-top: 1px solid #d9d9e3;
+            position: absolute;
+            bottom: 53px;
+            left: 0;
+            right: 0;
+        }
+
+        #account-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        #account-info img {
+            width: 20px;
+            height: 20px;
+        }
+
+        #account-info .dots {
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            top: -24px;
+        }
+
+        #input-area {
+            position: absolute;
+            bottom: 52px;
+            left: 244px;
+            width: 566px;
+            height: 82px;
+            border: 1px solid #d9d9e3;
+            padding: 16px;
+            box-sizing: border-box;
+            overflow: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+<div id='poweredBy' style='position: fixed; right: 0; bottom: 0; background-color: #0078D7; color: white; padding: 10px; z-index: 1000; border-top-left-radius: 10px; font-family: Roboto, sans-serif;'>
+    <span class='info-icon' style='margin-right: 5px; font-size: 1.2em;'>&#x2139;</span> Powered by <b><a href='https://converter.app' style='color: white;' target="_blank">Converter App</a></b>
+</div>
+<div id="black-area">
+    <div id="newchat">+ New Chat</div>
+    <div id="bottom-line"></div>
+    <div id="account-info">
+        <script data-pagespeed-no-defer>...</script>
+        <img src="https://chat.openai.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTteGgjPMzF0SqIQVxb3Uo7xeVSG9499YzqPHP7Xsn2fG%3Ds96-c&w=32&q=75" alt="Avatar" data-pagespeed-url-hash="2070939221" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        
+       
+<span>xunmu</span>
+        <svg width="12" height="12">
+            
+           
+<circle cx="2" cy="6" r="1" fill="white"></circle>
+            
+            <
+
+           
+<circle cx="6" cy="6" r="1" fill="white"></circle>
+            
+           
+<circle cx="10" cy="6" r="1" fill="white"></circle>
+        </svg>
+        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 flex-shrink-0 text-gray-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="1"></circle>
+            <circle cx="19" cy="12" r="1"></circle>
+            <circle cx="5" cy="12" r="1"></circle>
+        </svg>
+    </div>
+</div>
+<div id="input-area">
+    <!-- Add your input field here -->
+    <input type="text" placeholder="Enter text here">
+</div>
+</body>
+</html>
