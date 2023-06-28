@@ -81,6 +81,13 @@
             justify-content: center;
             justify-content: center;
         }
+        #account-info svg {
+    margin-left: auto;
+}
+#account-info span {
+    color: white; /* Or any color that is visible against the black background */
+    margin-left: 10px; /* Adjust this value as needed */
+}
 
     </style>
 </head>
@@ -102,7 +109,7 @@
            
 <circle cx="2" cy="6" r="1" fill="white"></circle>
             
-            <
+            
 
            
 <circle cx="6" cy="6" r="1" fill="white"></circle>
