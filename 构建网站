@@ -88,6 +88,9 @@
     color: white; /* Or any color that is visible against the black background */
     margin-left: 10px; /* Adjust this value as needed */
 }
+#input-area input {
+    text-align: center; /* Center the text */
+}
 
     </style>
 </head>
