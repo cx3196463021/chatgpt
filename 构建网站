@@ -67,20 +67,19 @@
         }
 
         #input-area {
-            position: absolute;
-            bottom: 52px;
-            left: 244px;
-            width: 566px;
-            height: 82px;
-            border: 1px solid #d9d9e3;
-            padding: 16px;
-            box-sizing: border-box;
-            overflow: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            justify-content: center;
-        }
+    position: absolute;
+    bottom: 52px;
+    left: 244px;
+    width: calc(100% - 244px); /* Subtract the width of the black area */
+    height: 82px;
+    border: 1px solid #d9d9e3;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
         #account-info svg {
     margin-left: auto;
 }
@@ -88,10 +87,11 @@
     color: white; /* Or any color that is visible against the black background */
     margin-left: 10px; /* Adjust this value as needed */
 }
-#input-area input {
-    text-align: center; /* Center the text */
+#input-area {
+    justify-content: center;
+    align-items: center;
+    /* Other styles... */
 }
-
     </style>
 </head>
 <body>
