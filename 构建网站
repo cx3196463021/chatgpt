@@ -29,6 +29,8 @@
             height: 18px;
             border-radius: 5px;
             margin-bottom: 24px;
+            position: fixed;
+            top: 0;
         }
 
         #bottom-line {
@@ -47,6 +49,7 @@
     width: 100%; /* Make sure the div takes up the full width of the black area */
     padding: 0 8px; /* Add some padding on the sides */
     margin-bottom: 24px;
+    margin-left: 10px; 
 }
         #account-info img {
             width: 20px;
@@ -75,6 +78,7 @@
             overflow: auto;
             display: flex;
             align-items: center;
+            justify-content: center;
             justify-content: center;
         }
 
