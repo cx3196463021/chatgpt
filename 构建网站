@@ -6,22 +6,21 @@
     <!-- <script src="https://unpkg.com/vue@next"></script> -->
     <script src="js/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
     <style>
-        #black-area {
-            background-color: #000;
-            margin: 0;
-            border: 0;
-            padding: 8px;
-            width: 244px;
-            height: 566px;
-            position: fixed;
-            left: 0;
-            top: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
+       #black-area {
+    background-color: #000;
+    margin: 0;
+    border: 0;
+    padding: 8px;
+    width: 244px;
+    height: 566px;
+    position: fixed;
+    left: 0;
+    bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
         #newchat {
             color: #fff;
             border: 1px solid #d9d9e3;
@@ -41,11 +40,11 @@
         }
 
         #account-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 24px;
-        }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 24px;
+}
 
         #account-info img {
             width: 20px;
