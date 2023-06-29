@@ -76,22 +76,25 @@
 
         /* 输入区域样式 */
         #input-area {
-            position: absolute;
-            bottom: 68px;
-            left: 400px;
-            width: 715.33px; /* 宽度为 524px，需要减去黑色区域的宽度 */
-            height: 58px;
-            border: 1px solid #d9d9e3; /* 边框样式为 1px 实线，颜色为 #d9d9e3 */
-            padding: 16px;
-            box-sizing: border-box;
-            overflow: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 transparent, 0 0 transparent, 0 0 15px rgba(0, 0, 0, 0.1); /* 设置阴影效果 */
-            border-color: floralwhite; /* 设置边框颜色 */
-            border-radius: 0.75rem; /* 设置圆角半径 */
-        }
+  position: absolute;
+  bottom: 68px;
+  left: 400px;
+  width: 715.33px; /* 宽度为 524px，需要减去黑色区域的宽度 */
+  height: 234px; /* 设置初始高度 */
+  max-height: calc(100vh - 24px - 68px); /* 最大高度为视窗高度减去黑色区域和底部间距的总和 */
+  border: 1px solid #d9d9e3; /* 边框样式为 1px 实线，颜色为 #d9d9e3 */
+  padding: 16px;
+  box-sizing: border-box;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 transparent, 0 0 transparent, 0 0 15px rgba(0, 0, 0, 0.1); /* 设置阴影效果 */
+  border-color: floralwhite; /* 设置边框颜色 */
+  border-radius: 0.75rem; /* 设置圆角半径 */
+  background-color: #fff; /* 设置背景颜色为白色 */
+}
+
 
         /* 图标样式 */
         .svg {
@@ -102,14 +105,38 @@
         #account-info span {
             color: white; /* 文本颜色为白色 */
             margin-left: 10px; /* 左侧间距为 10px */
-    
+        }
+        #input-area textarea {
+  text-align: left; /* 文本居左对齐 */
+  width: 100%; /* 宽度占满输入区域 */
+  height: 58px; /* 设置初始高度为58像素 */
+  outline: none;
+  box-shadow: none;
+  resize: none; /* 禁止用户调整文本域大小 */
+  overflow: hidden;
+  border: none; /* 去掉边框样式 */
+  background-color: transparent; /* 设置背景颜色为透明 */
+  color: #000; /* 设置文本颜色为黑色 */
+  padding: 0; /* 去掉内边距 */
+  margin: 0; /* 去掉外边距 */
+  font-size: 16px; /* 设置字体大小 */
+  line-height: 1.5; /* 设置行高 */
+  font-family: Arial, sans-serif; /* 设置字体样式 */
+}
+
+#input-area textarea:focus {
+  height: 234px; /* 获得焦点时的最大高度为234像素 */
+}
+        #input-area textarea::-webkit-scrollbar {
+            width: 8px;
         }
 
-        /* 输入框样式 */
-        #input-area input {
-            text-align: center; /* 文本居中对齐 */
-            width: 697.33px; /* 宽度为 697.33px */
-            height: 24px; /* 高度为 24px */
+        #input-area textarea::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        #input-area textarea::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
@@ -124,7 +151,7 @@
         <script data-pagespeed-no-defer>...</script>
         <img src="https://chat.openai.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTteGgjPMzF0SqIQVxb3Uo7xeVSG9499YzqPHP7Xsn2fG%3Ds96-c&w=32&q=75" alt="头像" data-pagespeed-url-hash="2070939221" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
         <span>xunmu</span>
-        <svg width="12" height="12">
+        <svg width="12" height="12" style="transform: translateX(60px);">
             <circle cx="2" cy="6" r="1" fill="white"></circle>
             <circle cx="6" cy="6" r="1" fill="white"></circle>
             <circle cx="10" cy="6" r="1" fill="white"></circle>
@@ -138,7 +165,28 @@
 </div>
 <div id="input-area">
     <!-- 在这里添加你的输入框 -->
-    <input type="text" placeholder="send a message " style="text-align: left; outline:none;box-shadow: none;">
+    <textarea placeholder="send a message"></textarea>
 </div>
+<script>
+    // 获取文本输入框元素
+    const textarea = document.querySelector("#input-area textarea");
+
+    // 监听输入事件
+    textarea.addEventListener("input", function () {
+        // 将输入框的高度设置为 auto，用于自适应文本内容的高度
+        this.style.height = "auto";
+        
+        // 获取输入框的滚动高度
+        const scrollHeight = this.scrollHeight;
+
+        // 最大高度限制为 234 像素
+        const maxHeight = 234;
+
+        // 如果滚动高度超过最大高度，则将输入框的高度固定为最大高度
+        if (scrollHeight > maxHeight) {
+            this.style.height = `${maxHeight}px`;
+        }
+    });
+</script>
 </body>
 </html>
