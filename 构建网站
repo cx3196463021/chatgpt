@@ -6,24 +6,27 @@
     <!-- <script src="https://unpkg.com/vue@next"></script> -->
     <script src="js/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
     <style>
-#black-area {
-    background-color: #000;
-    margin: 0;
-    border: 0;
-    padding: 8px;
-    width: 244px;
-    height: calc(100vh - 24px); /* Make the height dynamic so it's always 24px from the bottom */
-    position: fixed;
-    left: 0;
-    bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end; /* Align items to the bottom */
-}
+        /* 黑色区域样式 */
+        #black-area {
+            background-color: #000; /* 背景颜色为黑色 */
+            margin: 0;
+            border: 0;
+            padding: 8px;
+            width: 244px;
+            height: calc(100vh - 24px); /* 让高度动态计算，距离底部始终为 24px */
+            position: fixed;
+            left: 0;
+            bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end; /* 使项目对齐到底部 */
+        }
+
+        /* 新聊天样式 */
         #newchat {
-            color: #fff;
-            border: 1px solid #d9d9e3;
+            color: #fff; /* 文本颜色为白色 */
+            border: 1px solid #d9d9e3; /* 边框样式为 1px 实线，颜色为 #d9d9e3 */
             padding: 12px;
             width: 166px;
             height: 18px;
@@ -33,70 +36,81 @@
             top: 0;
         }
 
+        /* 分隔线样式 */
         #bottom-line {
-            border-top: 1px solid #d9d9e3;
+            border-top: 1px solid #d9d9e3; /* 顶部边框样式为 1px 实线，颜色为 #d9d9e3 */
             position: absolute;
             bottom: 53px;
             left: 0;
             right: 0;
         }
 
+        /* 账户信息样式 */
         #account-info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between; /* Distribute space between items */
-    width: 100%; /* Make sure the div takes up the full width of the black area */
-    padding: 0 8px; /* Add some padding on the sides */
-    margin-bottom: 24px;
-    margin-left: 10px; 
-}
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between; /* 元素之间均匀分布 */
+            width: 100%; /* 宽度占满黑色区域的全部宽度 */
+            padding: 0 8px; /* 左右两侧添加一些内边距 */
+            margin-bottom: 24px;
+            margin-left: 10px;
+        }
+
+        /* 账户头像样式 */
         #account-info img {
             width: 20px;
             height: 20px;
         }
 
+        /* 圆点样式 */
         #account-info .dots {
             width: 12px;
             height: 12px;
-            background-color: #fff;
+            background-color: #fff; /* 背景颜色为白色 */
             border-radius: 50%;
             display: inline-block;
             position: relative;
             top: -24px;
         }
 
+        /* 输入区域样式 */
         #input-area {
-    position: absolute;
-    bottom: 52px;
-    left: 244px;
-    width: calc(100% - 244px); /* Subtract the width of the black area */
-    height: 82px;
-    border: 1px solid #d9d9e3;
-    padding: 16px;
-    box-sizing: border-box;
-    overflow: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-}
-        #account-info svg {
-    margin-left: auto;
-}
-#account-info span {
-    color: white; /* Or any color that is visible against the black background */
-    margin-left: 10px; /* Adjust this value as needed */
-}
-#input-area {
-    justify-content: center;
-    align-items: center;
-    /* Other styles... */
-}#input-area input {
-    text-align: center;
-    width: 509px; /* Set the width */
-    height: 96px; /* Set the height */
-}
+            position: absolute;
+            bottom: 68px;
+            left: 400px;
+            width: 715.33px; /* 宽度为 524px，需要减去黑色区域的宽度 */
+            height: 58px;
+            border: 1px solid #d9d9e3; /* 边框样式为 1px 实线，颜色为 #d9d9e3 */
+            padding: 16px;
+            box-sizing: border-box;
+            overflow: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 transparent, 0 0 transparent, 0 0 15px rgba(0, 0, 0, 0.1); /* 设置阴影效果 */
+            border-color: floralwhite; /* 设置边框颜色 */
+            border-radius: 0.75rem; /* 设置圆角半径 */
+        }
+
+        /* 图标样式 */
+        .svg {
+            margin-left: auto;
+        }
+
+        /* 账户信息文本样式 */
+        #account-info span {
+            color: white; /* 文本颜色为白色 */
+            margin-left: 10px; /* 左侧间距为 10px */
+    
+        }
+
+        /* 输入框样式 */
+        #input-area input {
+            text-align: center; /* 文本居中对齐 */
+            width: 697.33px; /* 宽度为 697.33px */
+            height: 24px; /* 高度为 24px */
+        }
     </style>
 </head>
 <body>
@@ -104,17 +118,16 @@
     <span class='info-icon' style='margin-right: 5px; font-size: 1.2em;'>&#x2139;</span> Powered by <b><a href='https://converter.app' style='color: white;' target="_blank">Converter App</a></b>
 </div>
 <div id="black-area">
-    <div id="newchat">+ New Chat</div>
+    <div id="newchat">+ 新的聊天</div>
     <div id="bottom-line"></div>
     <div id="account-info">
         <script data-pagespeed-no-defer>...</script>
-        <img src="https://chat.openai.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTteGgjPMzF0SqIQVxb3Uo7xeVSG9499YzqPHP7Xsn2fG%3Ds96-c&w=32&q=75" alt="Avatar" data-pagespeed-url-hash="2070939221" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-
-<span>xunmu</span>
-        <svg width="12" height="12">    
-<circle cx="2" cy="6" r="1" fill="white"></circle>
-<circle cx="6" cy="6" r="1" fill="white"></circle>          
-<circle cx="10" cy="6" r="1" fill="white"></circle>
+        <img src="https://chat.openai.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTteGgjPMzF0SqIQVxb3Uo7xeVSG9499YzqPHP7Xsn2fG%3Ds96-c&w=32&q=75" alt="头像" data-pagespeed-url-hash="2070939221" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        <span>xunmu</span>
+        <svg width="12" height="12">
+            <circle cx="2" cy="6" r="1" fill="white"></circle>
+            <circle cx="6" cy="6" r="1" fill="white"></circle>
+            <circle cx="10" cy="6" r="1" fill="white"></circle>
         </svg>
         <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 flex-shrink-0 text-gray-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="1"></circle>
@@ -124,8 +137,8 @@
     </div>
 </div>
 <div id="input-area">
-    <!-- Add your input field here -->
-    <input type="text" placeholder="Enter text here">
+    <!-- 在这里添加你的输入框 -->
+    <input type="text" placeholder="send a message " style="text-align: left; outline:none;box-shadow: none;">
 </div>
 </body>
 </html>
