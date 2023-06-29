@@ -79,6 +79,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  
 }
         #account-info svg {
     margin-left: auto;
@@ -91,6 +92,10 @@
     justify-content: center;
     align-items: center;
     /* Other styles... */
+}#input-area input {
+    text-align: center;
+    width: 509px; /* Set the width */
+    height: 96px; /* Set the height */
 }
     </style>
 </head>
@@ -104,20 +109,11 @@
     <div id="account-info">
         <script data-pagespeed-no-defer>...</script>
         <img src="https://chat.openai.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FAAcHTteGgjPMzF0SqIQVxb3Uo7xeVSG9499YzqPHP7Xsn2fG%3Ds96-c&w=32&q=75" alt="Avatar" data-pagespeed-url-hash="2070939221" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-        
-       
-<span>xunmu</span>
-        <svg width="12" height="12">
-            
-           
-<circle cx="2" cy="6" r="1" fill="white"></circle>
-            
-            
 
-           
-<circle cx="6" cy="6" r="1" fill="white"></circle>
-            
-           
+<span>xunmu</span>
+        <svg width="12" height="12">    
+<circle cx="2" cy="6" r="1" fill="white"></circle>
+<circle cx="6" cy="6" r="1" fill="white"></circle>          
 <circle cx="10" cy="6" r="1" fill="white"></circle>
         </svg>
         <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 flex-shrink-0 text-gray-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
